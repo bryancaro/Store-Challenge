@@ -1,0 +1,8 @@
+/* 
+  Localizable.strings
+  SwiftUI-MVVM
+
+  Created by Bryan Caro on 7/9/22.
+  
+*/
+"default_title" = "Hola Cabify";
