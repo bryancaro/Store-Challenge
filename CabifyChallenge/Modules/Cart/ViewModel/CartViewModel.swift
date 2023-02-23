@@ -12,8 +12,35 @@
 
 import Foundation
 
-final class CartViewModel: ObservableObject, CartUseCaseOutputProtocol {
-    @Published var isLoading: Bool = false
+class CartViewModel: ObservableObject {
+    @Published var isLoading = true
     
+    private var repository: CartDataManagerProtocol!
+    private weak var callback: DataAlertProtocol?
+    
+    //  MARK: - Lifecycle
+    init(repository: CartDataManagerProtocol = CartDataManager()) {
+        self.callback = self
+        self.repository = repository
+        self.repository.callbackDelegate = self.callback
+    }
+    
+    func onAppear() {}
+    
+    func onDisappear() {}
 }
 
+//  MARK: - DataAlertProtocol
+extension CartViewModel: DataAlertProtocol {
+    func defaultError(_ errorString: String) {
+        print("[🔴] [CartViewModel] [Error]: \(errorString)")
+        haptic(type: .error)
+        isLoading = false
+    }
+    
+    func serverError(_ errorString: String) {
+        print("[🔴] [CartViewModel] [Error]: \(errorString)")
+        haptic(type: .error)
+        isLoading = false
+    }
+}

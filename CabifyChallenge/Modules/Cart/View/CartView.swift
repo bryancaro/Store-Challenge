@@ -15,7 +15,6 @@ import SwiftUI
 struct CartView: View {
     //  MARK: - Observed Object
     @StateObject private var viewModel = CartViewModel()
-    private let useCase: CartUseCaseProtocol = CartUseCaseFactory().makeUseCase()
     
     //  MARK: - Variables
     //  MARK: - Principal View
@@ -25,8 +24,8 @@ struct CartView: View {
                 Text("Hello, World!")
             }
         }
-        .onAppear(perform: useCase.onAppear)
-        .onDisappear(perform: useCase.onDisappear)
+        .onAppear(perform: viewModel.onAppear)
+        .onDisappear(perform: viewModel.onDisappear)
     }
 }
 

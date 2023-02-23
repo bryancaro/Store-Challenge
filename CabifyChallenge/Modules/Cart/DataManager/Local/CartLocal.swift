@@ -15,4 +15,3 @@ import Foundation
 protocol CartLocalProtocol {}
 
 final class CartLocal: CartLocalProtocol {}
-

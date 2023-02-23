@@ -1,45 +1,28 @@
 //
 //  ProductsDataManager.swift
-//  Clean Architecture
+//  CabifyChallenge
 //
-//  Created by Bryan Caro on 20/2/23.
+//  Created for CabifyChallenge in 2023
+//  Using Swift 5.0
+//  Running on macOS 13.1
+//
+//  Created by Bryan Caro on 23/2/23.
+//  
 //
 
 import Foundation
 
-class ProductsDataManager {
-    private let server: ProductsServerProtocol
-    private let local: ProductsLocalProtocol
-    private let output: ProductsUseCaseOutputProtocol
+protocol ProductsDataManagerProtocol: DataManagerProtocol {}
+
+class ProductsDataManager: DataManager {
+    private let server: ProductsServer
+    private let local: ProductsLocal
     
-    init(server: ProductsServerProtocol = ProductsServer(),
-         local: ProductsLocalProtocol = ProductsLocal(),
-         output: ProductsUseCaseOutputProtocol) {
+    init(server: ProductsServer = ProductsServer(),
+         local: ProductsLocal = ProductsLocal()) {
         self.server = server
         self.local = local
-        self.output = output
     }
 }
 
-extension ProductsDataManager: ProductsUseCaseProtocol {
-    func getProducts() async {
-        do {
-            let response = try await server.getProducts()
-            
-        } catch let error {
-            print(error.localizedDescription)
-        }
-    }
-    
-    func googleSignIn(user: String, password: String) {
-        print("LoginDataManager: googleSignIn tapped")
-        
-        let boolValue = Bool.random()
-        
-        if boolValue {
-            output.loginSuceeded()
-        } else {
-            output.loginFailed()
-        }
-    }
-}
+extension ProductsDataManager: ProductsDataManagerProtocol {}

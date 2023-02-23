@@ -15,7 +15,6 @@ import SwiftUI
 struct ProductDetailView: View {
     //  MARK: - Observed Object
     @StateObject private var viewModel = ProductDetailViewModel()
-    private let useCase: ProductDetailUseCaseProtocol = ProductDetailUseCaseFactory().makeUseCase()
     
     //  MARK: - Variables
     //  MARK: - Principal View
@@ -25,8 +24,8 @@ struct ProductDetailView: View {
                 Text("Hello, World!")
             }
         }
-        .onAppear(perform: useCase.onAppear)
-        .onDisappear(perform: useCase.onDisappear)
+        .onAppear(perform: viewModel.onAppear)
+        .onDisappear(perform: viewModel.onDisappear)
     }
 }
 

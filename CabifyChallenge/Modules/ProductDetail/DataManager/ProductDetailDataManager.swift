@@ -12,27 +12,17 @@
 
 import Foundation
 
-class ProductDetailDataManager {
+protocol ProductDetailDataManagerProtocol: DataManagerProtocol {}
+
+class ProductDetailDataManager: DataManager {
     private let server: ProductDetailServer
     private let local: ProductDetailLocal
-    private let output: ProductDetailUseCaseOutputProtocol
     
     init(server: ProductDetailServer = ProductDetailServer(),
-         local: ProductDetailLocal = ProductDetailLocal(),
-         output: ProductDetailUseCaseOutputProtocol) {
+         local: ProductDetailLocal = ProductDetailLocal()) {
         self.server = server
         self.local = local
-        self.output = output
     }
 }
 
-extension ProductDetailDataManager: ProductDetailUseCaseProtocol {
-    func onAppear() {
-        print("☀️ onAppear")
-    }
-    
-    func onDisappear() {
-        print("🌑 onDisappear")
-    }
-}
-
+extension ProductDetailDataManager: ProductDetailDataManagerProtocol {}

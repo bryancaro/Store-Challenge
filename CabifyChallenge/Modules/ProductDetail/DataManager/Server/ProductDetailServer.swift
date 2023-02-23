@@ -17,4 +17,3 @@ protocol ProductDetailServerProtocol {}
 final class ProductDetailServer: Network, ProductDetailServer.ServerCalls {
     typealias ServerCalls = ProductDetailServerProtocol
 }
-

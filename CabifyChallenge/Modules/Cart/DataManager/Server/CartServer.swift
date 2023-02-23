@@ -17,4 +17,3 @@ protocol CartServerProtocol {}
 final class CartServer: Network, CartServer.ServerCalls {
     typealias ServerCalls = CartServerProtocol
 }
-

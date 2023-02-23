@@ -15,4 +15,3 @@ import Foundation
 protocol ProductDetailLocalProtocol {}
 
 final class ProductDetailLocal: ProductDetailLocalProtocol {}
-

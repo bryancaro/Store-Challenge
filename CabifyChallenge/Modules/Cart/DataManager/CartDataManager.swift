@@ -12,27 +12,17 @@
 
 import Foundation
 
-class CartDataManager {
+protocol CartDataManagerProtocol: DataManagerProtocol {}
+
+class CartDataManager: DataManager {
     private let server: CartServer
     private let local: CartLocal
-    private let output: CartUseCaseOutputProtocol
     
     init(server: CartServer = CartServer(),
-         local: CartLocal = CartLocal(),
-         output: CartUseCaseOutputProtocol) {
+         local: CartLocal = CartLocal()) {
         self.server = server
         self.local = local
-        self.output = output
     }
 }
 
-extension CartDataManager: CartUseCaseProtocol {
-    func onAppear() {
-        print("☀️ onAppear")
-    }
-    
-    func onDisappear() {
-        print("🌑 onDisappear")
-    }
-}
-
+extension CartDataManager: CartDataManagerProtocol {}
