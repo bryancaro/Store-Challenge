@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol DataManagerProtocol: AnyObject {
-    var callbackDelegate: DataAlertProtocol? { get set }
-}
+//protocol DataManagerProtocol: AnyObject {
+//    var callbackDelegate: DataAlertProtocol? { get set }
+//}

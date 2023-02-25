@@ -10,8 +10,8 @@ import Foundation
 typealias VoidHandler = () -> Void
 typealias Handler<T> = (T) -> Void
 
-protocol DataAlertProtocol: AnyObject {
-    func defaultError(_ errorString: String)
-    func serverError(_ errorString: String)
-}
+//protocol DataAlertProtocol: AnyObject {
+//    func defaultError(_ errorString: String)
+//    func serverError(_ errorString: String)
+//}
 

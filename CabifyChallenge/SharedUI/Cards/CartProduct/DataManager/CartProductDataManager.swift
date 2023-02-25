@@ -12,17 +12,17 @@
 
 import Foundation
 
-protocol CartProductDataManagerProtocol: DataManagerProtocol {}
-
-class CartProductDataManager: DataManager {
-    private let server: CartProductServer
-    private let local: CartProductLocal
-    
-    init(server: CartProductServer = CartProductServer(),
-         local: CartProductLocal = CartProductLocal()) {
-        self.server = server
-        self.local = local
-    }
-}
-
-extension CartProductDataManager: CartProductDataManagerProtocol {}
+//protocol CartProductDataManagerProtocol: DataManagerProtocol {}
+//
+//class CartProductDataManager: DataManager {
+//    private let server: CartProductServer
+//    private let local: CartProductLocal
+//    
+//    init(server: CartProductServer = CartProductServer(),
+//         local: CartProductLocal = CartProductLocal()) {
+//        self.server = server
+//        self.local = local
+//    }
+//}
+//
+//extension CartProductDataManager: CartProductDataManagerProtocol {}
