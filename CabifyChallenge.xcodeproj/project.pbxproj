@@ -209,6 +209,7 @@
 		11E746C029AA390F0083EC75 /* CartUseCasesFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartUseCasesFactory.swift; sourceTree = "<group>"; };
 		11E746C129AA390F0083EC75 /* CartUseCasesOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartUseCasesOutput.swift; sourceTree = "<group>"; };
 		11E746EC29AA3FB80083EC75 /* ProductsServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsServices.swift; sourceTree = "<group>"; };
+		11E746EE29AA42CA0083EC75 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -369,6 +370,7 @@
 		1146E8CD29A1312300420964 /* CabifyChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				11E746EE29AA42CA0083EC75 /* Info.plist */,
 				1146E99229A13AD100420964 /* BaseFiles */,
 				11E7466129AA388D0083EC75 /* Modules */,
 				1162E6E729A7E6CD003A8184 /* SharedUI */,
@@ -1499,6 +1501,7 @@
 				DEVELOPMENT_TEAM = ZASPB3G349;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CabifyChallenge/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1530,6 +1533,7 @@
 				DEVELOPMENT_TEAM = ZASPB3G349;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CabifyChallenge/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
