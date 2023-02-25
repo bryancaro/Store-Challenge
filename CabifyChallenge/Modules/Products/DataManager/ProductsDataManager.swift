@@ -12,7 +12,9 @@
 
 import Foundation
 
-protocol ProductsDataManagerProtocol: DataManagerProtocol {}
+protocol ProductsDataManagerProtocol: DataManagerProtocol {
+    func getProducts() async -> [ProductModel]
+}
 
 class ProductsDataManager: DataManager {
     private let server: ProductsServer
@@ -25,4 +27,15 @@ class ProductsDataManager: DataManager {
     }
 }
 
-extension ProductsDataManager: ProductsDataManagerProtocol {}
+extension ProductsDataManager: ProductsDataManagerProtocol {
+    func getProducts() async -> [ProductModel] {
+        do {
+            let response = try await server.getProducts()
+            let model = response.map({ ProductModel($0) })
+            return model
+        } catch let error {
+            await handleAlert(error: error)
+            return [ProductModel]()
+        }
+    }
+}

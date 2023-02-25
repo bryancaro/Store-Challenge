@@ -24,11 +24,8 @@ struct LaunchScreenView: View {
             BackgroundColorComponent
             
             if !viewModel.isLoading {
-                Color.red
-                    .transition(.opacity)
-                    .onAppear {
-                        print("Asdasda")
-                    }
+                ProductsView(namespace: namespace)
+                    .transition(.identity)
             } else {
                 LogoComponent
             }
@@ -64,6 +61,7 @@ extension LaunchScreenView {
             RoundedRectangle(cornerRadius: 10, style: .continuous)
                 .matchedGeometryEffect(id: "logoMask", in: namespace)
         )
+        .multiMediumShadow(.md_4, color: Color.CabifyColor)
     }
 }
 

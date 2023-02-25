@@ -11,9 +11,11 @@
 //
 
 import Foundation
+import SwiftUI
 
 class ProductDetailViewModel: ObservableObject {
     @Published var isLoading = true
+    @Published var appear = [false, false, false, false]
     
     private var repository: ProductDetailDataManagerProtocol!
     private weak var callback: DataAlertProtocol?
@@ -25,9 +27,43 @@ class ProductDetailViewModel: ObservableObject {
         self.repository.callbackDelegate = self.callback
     }
     
-    func onAppear() {}
+    func onAppear() {
+        fadeIn()
+    }
     
     func onDisappear() {}
+    
+    func fadeIn() {
+        withAnimation(.easeOut.delay(0.4)) {
+            appear[0] = true
+        }
+        withAnimation(.easeOut.delay(0.6)) {
+            appear[1] = true
+        }
+        withAnimation(.easeOut.delay(0.8)) {
+            appear[2] = true
+        }
+        withAnimation(.easeOut.delay(1)) {
+            appear[3] = true
+        }
+    }
+    
+    func fadeOut() {
+        withAnimation(.easeIn(duration: 0.1)) {
+            appear[0] = false
+            appear[1] = false
+            appear[2] = false
+            appear[3] = false
+        }
+    }
+    
+    func dismissAction(completion: @escaping() -> Void) {
+        fadeOut()
+        
+        withAnimation(.springAnimation) {
+            completion()
+        }
+    }
 }
 
 //  MARK: - DataAlertProtocol

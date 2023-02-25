@@ -14,14 +14,20 @@ import SwiftUI
 
 struct CartView: View {
     //  MARK: - Observed Object
+    @EnvironmentObject private var productsViewModel: ProductsViewModel
     @StateObject private var viewModel = CartViewModel()
+    @Environment(\.presentationMode) var presentationMode
     
     //  MARK: - Variables
     //  MARK: - Principal View
     var body: some View {
         ZStack {
             VStack {
-                Text("Hello, World!")
+                TitleComponent
+                
+                CartProductsComponent
+                
+                PayButtonView(price: .constant(32434), title: "pay_label".localized, action: {})
             }
         }
         .onAppear(perform: viewModel.onAppear)
@@ -30,14 +36,63 @@ struct CartView: View {
 }
 
 //  MARK: - Actions
-extension CartView {}
+extension CartView {
+    private func dismissAction() {
+        presentationMode.wrappedValue.dismiss()
+    }
+}
 
 //  MARK: - Local Components
-extension CartView {}
+extension CartView {
+    private var TitleComponent: some View {
+        VStack {
+            RoundedRectangle(cornerRadius: 5)
+                .fill(Color.gray)
+                .frame(width: 70, height: 5)
+                .padding(.top)
+            
+            HStack {
+                BackButtonView(action: dismissAction)
+                
+                Spacer()
+                
+                Text("cart_screen_title")
+                    .font(.title.bold())
+                
+                Spacer()
+                
+                Spacer()
+                    .frame(width: 45, height: 45)
+            }
+            .padding()
+        }
+        .padding(.bottom, 30)
+    }
+    
+    private var CartProductsComponent: some View {
+        ScrollView {
+            VStack {
+                if !productsViewModel.cartProducts.isEmpty {
+                    ForEach(productsViewModel.cartProducts.indices, id: \.self) { index in
+                        if productsViewModel.cartProducts.indices.contains(index) {
+                            CartProductView(product: productsViewModel.cartProducts[index],
+                                            action: {
+                                productsViewModel.deleteProduct(index)
+                            })
+                        }
+                    }
+                } else {
+                    EmptyResultView(type: .emptyCart)
+                }
+            }
+        }
+    }
+}
 
 //  MARK: - Preview
 struct CartView_Previews: PreviewProvider {
     static var previews: some View {
         CartView()
+            .environmentObject(ProductsViewModel())
     }
 }
