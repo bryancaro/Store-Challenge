@@ -6,3 +6,14 @@
   
 */
 "default_title" = "Hello Cabify";
+"orders_order_price" = "Price";
+"label_add_to_cart" = "Add to cart";
+"label_discount_applied" = "Discount applied";
+"label_info" = "Information";
+"cart_screen_title" = "Cart";
+"cart_empty_title" = "Your Cart is Empty";
+"cart_empty_subtitle" = "It looks like you haven’t added anything to your cart yet";
+"product_empty_title" = "No products found..";
+"product_empty_subtitle" = "It looks like we have a problem, please try again later!";
+"develop_by" = "Develop by ";
+"pay_label" = "Pay";

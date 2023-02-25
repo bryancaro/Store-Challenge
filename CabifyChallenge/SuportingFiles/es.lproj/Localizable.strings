@@ -6,3 +6,14 @@
   
 */
 "default_title" = "Hola Cabify";
+"orders_order_price" = "Precio";
+"label_add_to_cart" = "Añadir al carrito";
+"label_discount_applied" = "Descuento aplicado";
+"label_info" = "Información";
+"cart_screen_title" = "Carrito";
+"cart_empty_title" = "Tu carro esta vacio";
+"cart_empty_subtitle" = "Parece que aún no has añadido nada a tu carrito";
+"product_empty_title" = "No se encontraron productos..";
+"product_empty_subtitle" = "Parece que tenemos un problema, inténtalo de nuevo más tarde.";
+"develop_by" = "Desarrollado por ";
+"pay_label" = "Pagar";
