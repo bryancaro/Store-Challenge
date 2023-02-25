@@ -13,11 +13,15 @@
 import Foundation
 
 final class FirebaseAnalyticsCartTracker: CartUseCasesOutputProtocol {
-    func onAppearSuccess() {
+    func onAppearSuccess(cartProducts: [ProductModel]) {
         print("[🟢] [FirebaseAnalyticsCartTracker] [onAppear]")
     }
     
     func onDisappearSuccess() {
         print("[🟢] [FirebaseAnalyticsCartTracker] [onDisappear]")
+    }
+    
+    func deletedCartProductSuccess(index: Int, cartProducts: [ProductModel]) {
+        print("[🟢] [FirebaseAnalyticsCartTracker] [deletedCartProduct]")
     }
 }

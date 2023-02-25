@@ -31,7 +31,7 @@ struct ProductsModel {
     }
 }
 
-struct ProductModel: Identifiable {
+struct ProductModel: Identifiable, Equatable {
     enum ProductCode: String {
         case voucher = "VOUCHER"
         case tshirt = "TSHIRT"

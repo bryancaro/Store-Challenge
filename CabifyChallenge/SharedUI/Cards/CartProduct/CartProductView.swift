@@ -14,8 +14,6 @@ import SwiftUI
 
 struct CartProductView: View {
     //  MARK: - Observed Object
-    @StateObject private var viewModel = CartProductViewModel()
-    
     //  MARK: - Variables
     @State private var showCardAnimation = false
     var product: ProductModel
@@ -49,7 +47,6 @@ struct CartProductView: View {
             //            .dynamicTypeSize(.xSmall ... .xLarge)
         }
         .onAppear(perform: onAppear)
-        .onDisappear(perform: viewModel.onDisappear)
     }
 }
 
@@ -58,14 +55,6 @@ extension CartProductView {
     private func onAppear() {
         withAnimation(.springAnimation.delay(0.3)) {
             showCardAnimation = true
-        }
-    }
-    
-    private func deleteItem() {
-        withAnimation(.springAnimation.delay(0.3)) {
-            showCardAnimation = false
-            
-            action()
         }
     }
 }
@@ -110,7 +99,7 @@ extension CartProductView {
         HStack {
             Spacer()
             
-            ExpButton(action: deleteItem, label: {
+            ExpButton(action: action, label: {
                 Image(systemName: "trash")
                     .font(.system(size: 14).bold())
                     .foregroundColor(.white)

@@ -13,21 +13,18 @@
 import Foundation
 
 final class ProductDetailViewModel: ObservableObject {
-    @Published var isLoading = true
+    @Published var isLoading = false
     
-    private var repository: ProductDetailUseCasesProtocol!
+    ///
+    @Published var cartProducts = [ProductModel]()
+    @Published var product = ProductModel.empty
+    ///
+    
+    var repository: ProductDetailUseCasesProtocol!
     //  MARK: - Lifecycle
     init(repository: ProductDetailUseCasesProtocol = ProductDetailUseCasesFactory().makeUseCases()) {
         self.repository = repository
         self.repository.delegate = self
-    }
-    
-    func onAppear() {
-        repository.onAppear()
-    }
-    
-    func onDisappear() {
-        repository.onDisappear()
     }
     
     func hideLoadingView() {
@@ -39,12 +36,20 @@ final class ProductDetailViewModel: ObservableObject {
 
 //  MARK: - UseCasesOutputProtocol
 extension ProductDetailViewModel: ProductDetailUseCasesOutputProtocol {
-    func onAppearSuccess() {
+    func onAppearSuccess(cartProducts: [ProductModel], product: ProductModel) {
         print("[🟢] [ProductDetailViewModel] [onAppear]")
+        self.cartProducts = cartProducts
+        self.product = product
     }
     
     func onDisappearSuccess() {
         print("[🟢] [ProductDetailViewModel] [onDisappear]")
+    }
+    
+    func addedToCartSuccess(product: ProductModel) {
+        print("[🟢] [ProductDetailViewModel] [addedToCart]")
+        haptic(type: .success)
+        self.cartProducts.append(product)
     }
     
     func defaultError(_ errorString: String) {

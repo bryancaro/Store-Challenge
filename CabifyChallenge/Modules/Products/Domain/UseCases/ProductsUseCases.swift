@@ -17,4 +17,9 @@ protocol ProductsUseCasesProtocol: AnyObject {
     
     func onAppear()
     func onDisappear()
+    func openCartView()
+    func openMeView()
+    func openProductDetail(product: ProductModel)
+    func dismissProductDetail()
+    func getProducts() async -> [ProductModel]
 }

@@ -27,16 +27,24 @@ struct CartView: View {
                 
                 CartProductsComponent
                 
-                PayButtonView(price: .constant(32434), title: "pay_label".localized, action: {})
+                PayButtonView(price: $viewModel.totalAmount, title: "pay_label".localized, action: {})
             }
         }
-        .onAppear(perform: viewModel.onAppear)
-        .onDisappear(perform: viewModel.onDisappear)
+        .onAppear(perform: onAppear)
+        .onDisappear(perform: onDisappear)
     }
 }
 
 //  MARK: - Actions
 extension CartView {
+    private func onAppear() {
+        viewModel.repository.onAppear(cartProducts: productsViewModel.cartProducts)
+    }
+    
+    private func onDisappear() {
+        productsViewModel.cartProducts = viewModel.cartProducts
+    }
+    
     private func dismissAction() {
         presentationMode.wrappedValue.dismiss()
     }
@@ -72,12 +80,12 @@ extension CartView {
     private var CartProductsComponent: some View {
         ScrollView {
             VStack {
-                if !productsViewModel.cartProducts.isEmpty {
-                    ForEach(productsViewModel.cartProducts.indices, id: \.self) { index in
-                        if productsViewModel.cartProducts.indices.contains(index) {
-                            CartProductView(product: productsViewModel.cartProducts[index],
+                if !viewModel.cartProducts.isEmpty {
+                    ForEach(viewModel.cartProducts.indices, id: \.self) { index in
+                        if viewModel.cartProducts.indices.contains(index) {
+                            CartProductView(product: viewModel.cartProducts[index],
                                             action: {
-                                productsViewModel.deleteProduct(index)
+                                viewModel.repository.deleteCartProduct(index, cartProducts: viewModel.cartProducts)
                             })
                         }
                     }

@@ -30,12 +30,12 @@ struct ProductsView: View {
                 }
                 .frame(maxWidth: .infinity)
             }
-            
-            CartButton
-            
+                        
             MeComponent
             
             ProductDetailComponent
+            
+            CartButton
         }
         .sheet(item: $viewModel.sheetType, content: { type in
             switch type {
@@ -47,8 +47,8 @@ struct ProductsView: View {
         })
         .animation(.springAnimation, value: UUID())
         .environmentObject(viewModel)
-        .onAppear(perform: viewModel.onAppear)
-        .onDisappear(perform: viewModel.onDisappear)
+        .onAppear(perform: viewModel.repository.onAppear)
+        .onDisappear(perform: viewModel.repository.onDisappear)
     }
 }
 
@@ -99,10 +99,12 @@ extension ProductsView {
     }
     
     private var CartButton: some View {
-        CartButtonView()
+        CartButtonView(isAnimating: $viewModel.isAnimating, count: $viewModel.totalProducts, action: viewModel.repository.openCartView)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
             .padding(.trailing, 20)
             .opacity(viewModel.isLoading ? 0 : 1)
+            .opacity(viewModel.sheetType == .cart ? 0 : 1)
+            .animation(.easeIn(duration: 1), value: viewModel.sheetType)
     }
     
     private var ProductsComponent: some View {
@@ -112,7 +114,10 @@ extension ProductsView {
                     ForEach(viewModel.products.indices, id: \.self) { index in
                         ProductCard(namespace: productsNamespace,
                                     product: viewModel.products[index],
-                                    action: { viewModel.showProductDetail(index) })
+                                    action: {
+                            let product = viewModel.products[index]
+                            viewModel.repository.openProductDetail(product: product)
+                        })
                     }
                 }
             } else if !viewModel.isLoading {
@@ -130,7 +135,7 @@ extension ProductsView {
     }
     
     private var MeComponent: some View {
-        Button(action: viewModel.showMeView) {
+        Button(action: viewModel.repository.openMeView) {
             HStack {
                 Text("develop_by")
                     .font(.footnote)

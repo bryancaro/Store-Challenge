@@ -15,19 +15,16 @@ import Foundation
 final class CartViewModel: ObservableObject {
     @Published var isLoading = true
     
-    private var repository: CartUseCasesProtocol!
+    ///
+    @Published var cartProducts = [ProductModel]()
+    @Published var totalAmount: Double = 0
+    ///
+    
+    var repository: CartUseCasesProtocol!
     //  MARK: - Lifecycle
     init(repository: CartUseCasesProtocol = CartUseCasesFactory().makeUseCases()) {
         self.repository = repository
         self.repository.delegate = self
-    }
-    
-    func onAppear() {
-        repository.onAppear()
-    }
-    
-    func onDisappear() {
-        repository.onDisappear()
     }
     
     func hideLoadingView() {
@@ -39,12 +36,21 @@ final class CartViewModel: ObservableObject {
 
 //  MARK: - UseCasesOutputProtocol
 extension CartViewModel: CartUseCasesOutputProtocol {
-    func onAppearSuccess() {
+    func onAppearSuccess(cartProducts: [ProductModel]) {
         print("[🟢] [CartViewModel] [onAppear]")
+        self.cartProducts = cartProducts
+        hideLoadingView()
     }
     
     func onDisappearSuccess() {
         print("[🟢] [CartViewModel] [onDisappear]")
+    }
+    
+    func deletedCartProductSuccess(index: Int, cartProducts: [ProductModel]) {
+        print("[🟢] [CartViewModel] [deletedCartProduct]")
+        guard self.cartProducts.indices.contains(index) else { return }
+        self.cartProducts.remove(at: index)
+        haptic(type: .success)
     }
     
     func defaultError(_ errorString: String) {

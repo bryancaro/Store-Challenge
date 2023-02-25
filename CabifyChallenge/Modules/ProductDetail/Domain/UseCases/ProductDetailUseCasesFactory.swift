@@ -27,11 +27,15 @@ final class ProductDetailUseCasesOutputComposer: ProductDetailUseCasesOutputProt
         self.outputs = outputs
     }
     
-    func onAppearSuccess() {
-        outputs.forEach({ $0.onAppearSuccess() })
+    func onAppearSuccess(cartProducts: [ProductModel], product: ProductModel) {
+        outputs.forEach({ $0.onAppearSuccess(cartProducts: cartProducts, product: product) })
     }
     
     func onDisappearSuccess() {
         outputs.forEach({ $0.onDisappearSuccess() })
+    }
+    
+    func addedToCartSuccess(product: ProductModel) {
+        outputs.forEach({ $0.addedToCartSuccess(product: product) })
     }
 }

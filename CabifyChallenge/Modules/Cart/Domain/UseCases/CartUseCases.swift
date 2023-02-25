@@ -15,6 +15,7 @@ import Foundation
 protocol CartUseCasesProtocol: AnyObject {
     var delegate: CartUseCasesOutputProtocol? { get set }
     
-    func onAppear()
+    func onAppear(cartProducts: [ProductModel])
     func onDisappear()
+    func deleteCartProduct(_ index: Int, cartProducts: [ProductModel])
 }

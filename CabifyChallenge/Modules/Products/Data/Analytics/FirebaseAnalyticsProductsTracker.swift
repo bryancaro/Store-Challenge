@@ -20,4 +20,20 @@ final class FirebaseAnalyticsProductsTracker: ProductsUseCasesOutputProtocol {
     func onDisappearSuccess() {
         print("[🟢] [FirebaseAnalyticsProductsTracker] [onDisappear]")
     }
+    
+    func openCartSuccess() {
+        print("[🟢] [FirebaseAnalyticsProductsTracker] [openCart]")
+    }
+    
+    func openMeSuccess() {
+        print("[🟢] [FirebaseAnalyticsProductsTracker] [openMeSuccess]")
+    }
+    
+    func openProductDetailSuccess(product: ProductModel) {
+        print("[🟢] [FirebaseAnalyticsProductsTracker] [openProductDetailSuccess]")
+    }
+    
+    func dismissProductDetailSuccess() {
+        print("[🟢] [FirebaseAnalyticsProductsTracker] [dismissProductDetailSuccess]")
+    }
 }

@@ -17,36 +17,24 @@ final class ProductsViewModel: ObservableObject {
     
     ///
     @Published var isAnimating = false
-    @Published var products = ProductModel.testArray //[ProductModel]()
-    @Published var showProductDetail = false
+    @Published var products = [ProductModel]()
+    @Published var cartProducts = [ProductModel]() {
+        didSet {
+            animateCartButton()
+            totalProducts = cartProducts.count
+        }
+    }
+    @Published var totalProducts: Int = 0
     @Published var product = ProductModel.empty
-    @Published var cartProducts = [ProductModel]()
+    @Published var showProductDetail = false
     @Published var sheetType: SheetType?
     ///
     
-    private var repository: ProductsUseCasesProtocol!
+    var repository: ProductsUseCasesProtocol!
     //  MARK: - Lifecycle
     init(repository: ProductsUseCasesProtocol = ProductsUseCasesFactory().makeUseCases()) {
         self.repository = repository
         self.repository.delegate = self
-    }
-    
-    func onAppear() {
-        repository.onAppear()
-        Task {
-//            let model = await getProducts()
-//
-//            guard !model.isEmpty else { return }
-//
-//            await MainActor.run(body: {
-//                products = model
-                dismissLoading()
-//            })
-        }
-    }
-    
-    func onDisappear() {
-        repository.onDisappear()
     }
     
     func dismissLoading() {
@@ -55,46 +43,61 @@ final class ProductsViewModel: ObservableObject {
         })
     }
     
-    func openCartView() {
-        sheetType = .cart
+    func animateCartButton() {
+        DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
+            self.isAnimating = true
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                self.isAnimating = false
+            })
+        })
     }
-    
-    func showProductDetail(_ index: Int) {
-        guard products.indices.contains(index) else { return }
-        
-        product = products[index]
-        showProductDetail = true
-    }
-    
-    func dismissProductDetail() {
-        product = ProductModel.empty
-        showProductDetail = false
-    }
-    
-    func deleteProduct(_ index: Int) {
-        guard cartProducts.indices.contains(index) else { return }
-        cartProducts.remove(at: index)
-    }
-    
-    func showMeView() {
-        sheetType = .me
-    }
-    
-    
+
     //  MARK: - API CALL
-//    func getProducts() async -> [ProductModel] {
-//        await repository.getProducts()
-//    }
+    private func getProducts() {
+        Task {
+            let model = await repository.getProducts()
+            
+            guard !model.isEmpty else { return dismissLoading() }
+            await MainActor.run(body: {
+                products = model
+                dismissLoading()
+            })
+        }
+    }
 }
 
 //  MARK: - UseCasesOutputProtocol
 extension ProductsViewModel: ProductsUseCasesOutputProtocol {
     func onAppearSuccess() {
         print("[🟢] [ProductsViewModel] [onAppear]")
+        getProducts()
     }
     
     func onDisappearSuccess() {
         print("[🟢] [ProductsViewModel] [onDisappear]")
+    }
+    
+    func openCartSuccess() {
+        print("[🟢] [ProductsViewModel] [openCart]")
+        sheetType = .cart
+    }
+    
+    func openMeSuccess() {
+        print("[🟢] [ProductsViewModel] [openMe]")
+        sheetType = .me
+    }
+    
+    func openProductDetailSuccess(product: ProductModel) {
+        print("[🟢] [ProductsViewModel] [openProductDetail]")
+        self.product = product
+        showProductDetail = true
+    }
+    
+    func dismissProductDetailSuccess() {
+        print("[🟢] [ProductsViewModel] [dismissProductDetail]")
+        showProductDetail = false
+        self.product = ProductModel.empty
     }
     
     func defaultError(_ errorString: String) {

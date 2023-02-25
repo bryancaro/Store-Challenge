@@ -13,6 +13,7 @@
 import Foundation
 
 protocol CartUseCasesOutputProtocol: AnyObject {
-    func onAppearSuccess()
+    func onAppearSuccess(cartProducts: [ProductModel])
     func onDisappearSuccess()
+    func deletedCartProductSuccess(index: Int, cartProducts: [ProductModel])
 }

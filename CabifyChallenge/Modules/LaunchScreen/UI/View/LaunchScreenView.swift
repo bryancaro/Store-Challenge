@@ -31,8 +31,8 @@ struct LaunchScreenView: View {
             }
         }
         .animation(.springAnimation, value: viewModel.isLoading)
-        .onAppear(perform: viewModel.onAppear)
-        .onDisappear(perform: viewModel.onDisappear)
+        .onAppear(perform: viewModel.repository.onAppear)
+        .onDisappear(perform: viewModel.repository.onDisappear)
     }
 }
 

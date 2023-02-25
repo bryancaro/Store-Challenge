@@ -14,8 +14,6 @@ import SwiftUI
 
 struct ProductCard: View {
     //  MARK: - Observed Object
-    @StateObject private var viewModel = ProductCardViewModel()
-    
     //  MARK: - Variables
     @State private var showCardAnimation = false
     @State private var height: CGFloat = ProductCard.heightCard
@@ -38,7 +36,6 @@ struct ProductCard: View {
             .onTapGesture(perform: action)
         }
         .onAppear(perform: onAppear)
-        .onDisappear(perform: viewModel.onDisappear)
     }
 }
 

@@ -34,4 +34,20 @@ final class ProductsUseCasesOutputComposer: ProductsUseCasesOutputProtocol {
     func onDisappearSuccess() {
         outputs.forEach({ $0.onDisappearSuccess() })
     }
+    
+    func openCartSuccess() {
+        outputs.forEach({ $0.openCartSuccess() })
+    }
+    
+    func openMeSuccess() {
+        outputs.forEach({ $0.openMeSuccess() })
+    }
+    
+    func openProductDetailSuccess(product: ProductModel) {
+        outputs.forEach({ $0.openProductDetailSuccess(product: product) })
+    }
+    
+    func dismissProductDetailSuccess() {
+        outputs.forEach({ $0.dismissProductDetailSuccess() })
+    }
 }

@@ -14,13 +14,14 @@ import SwiftUI
 
 struct CartButtonView: View {
     //  MARK: - Observed Object
-    @EnvironmentObject private var productsViewModel: ProductsViewModel
-    
     //  MARK: - Variables
+    @Binding var isAnimating: Bool
+    @Binding var count: Int
+    var action: () -> Void
     //  MARK: - Principal View
     var body: some View {
         ZStack {
-            ExpButton(action: showCartAction, label: {
+            ExpButton(action: action, label: {
                 Image(systemName: "bag")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
@@ -30,21 +31,17 @@ struct CartButtonView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                     .smallShadow(.sm_4)
                     .overlay(countIndicator)
-                    .scaleEffect(productsViewModel.isAnimating ? 1.5 : 1)
-                    .padding(.trailing, productsViewModel.isAnimating ? 10 : 0)
+                    .scaleEffect(isAnimating ? 1.5 : 1)
+                    .padding(.trailing, isAnimating ? 10 : 0)
             }, impactStyle: .soft)
         }
-        .animation(.spring(), value: productsViewModel.isAnimating)
+        .animation(.spring(), value: isAnimating)
         //  MARK: - LifeCycle
     }
 }
 
 //  MARK: - Actions
-extension CartButtonView {
-    private func showCartAction() {
-        productsViewModel.openCartView()
-    }
-}
+extension CartButtonView {}
 
 //  MARK: - Local Components
 extension CartButtonView {
@@ -53,12 +50,12 @@ extension CartButtonView {
             Spacer()
             
             VStack {
-                Text("\(productsViewModel.cartProducts.count)")
+                Text("\(count)")
                     .font(.caption2.bold())
                     .foregroundColor(.White)
                     .minimumScaleFactor(0.01)
                     .frame(width: 18, height: 18)
-                    .background(productsViewModel.isAnimating ? .green : Color.Primary)
+                    .background(isAnimating ? .green : Color.Primary)
                     .clipShape(Circle())
                 
                 Spacer()
@@ -71,7 +68,6 @@ extension CartButtonView {
 //  MARK: - Preview
 struct CartButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        CartButtonView()
-            .environmentObject(ProductsViewModel())
+        CartButtonView(isAnimating: .constant(false), count: .constant(10), action: {})
     }
 }

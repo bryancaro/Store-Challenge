@@ -15,4 +15,8 @@ import Foundation
 protocol ProductsUseCasesOutputProtocol: AnyObject {
     func onAppearSuccess()
     func onDisappearSuccess()
+    func openCartSuccess()
+    func openMeSuccess()
+    func openProductDetailSuccess(product: ProductModel)
+    func dismissProductDetailSuccess()
 }

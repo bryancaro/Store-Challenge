@@ -15,20 +15,11 @@ import Foundation
 final class LaunchScreenViewModel: ObservableObject {
     @Published var isLoading = true
     
-    private var repository: LaunchScreenUseCasesProtocol!
+    var repository: LaunchScreenUseCasesProtocol!
     //  MARK: - Lifecycle
     init(repository: LaunchScreenUseCasesProtocol = LaunchScreenUseCasesFactory().makeUseCases()) {
         self.repository = repository
         self.repository.delegate = self
-    }
-    
-    func onAppear() {
-        repository.onAppear()
-        hideLoadingView()
-    }
-    
-    func onDisappear() {
-        repository.onDisappear()
     }
     
     func hideLoadingView() {
@@ -42,6 +33,7 @@ final class LaunchScreenViewModel: ObservableObject {
 extension LaunchScreenViewModel: LaunchScreenUseCasesOutputProtocol {
     func onAppearSuccess() {
         print("[🟢] [LaunchScreenViewModel] [onAppear]")
+        hideLoadingView()
     }
     
     func onDisappearSuccess() {

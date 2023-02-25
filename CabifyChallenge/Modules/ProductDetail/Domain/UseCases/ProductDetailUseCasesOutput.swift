@@ -13,6 +13,7 @@
 import Foundation
 
 protocol ProductDetailUseCasesOutputProtocol: AnyObject {
-    func onAppearSuccess()
+    func onAppearSuccess(cartProducts: [ProductModel], product: ProductModel)
     func onDisappearSuccess()
+    func addedToCartSuccess(product: ProductModel)
 }

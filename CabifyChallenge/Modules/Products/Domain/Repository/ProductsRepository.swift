@@ -40,4 +40,35 @@ extension ProductsRepository: ProductsUseCasesProtocol {
         delegate?.onDisappearSuccess()
         output.onDisappearSuccess()
     }
+    
+    func openCartView() {
+        delegate?.openCartSuccess()
+        output.openCartSuccess()
+    }
+    
+    func openMeView() {
+        delegate?.openMeSuccess()
+        output.openMeSuccess()
+    }
+    
+    func openProductDetail(product: ProductModel) {
+        delegate?.openProductDetailSuccess(product: product)
+        output.openProductDetailSuccess(product: product)
+    }
+    
+    func dismissProductDetail() {
+        delegate?.dismissProductDetailSuccess()
+        output.dismissProductDetailSuccess()
+    }
+    
+    func getProducts() async -> [ProductModel] {
+        do {
+            let response = try await server.getProducts()
+            let model = response.map({ ProductModel($0) })
+            return model
+        } catch let error {
+            print(error.localizedDescription)
+            return [ProductModel]()
+        }
+    }
 }

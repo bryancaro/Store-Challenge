@@ -36,19 +36,20 @@ struct ProductDetailView: View {
             
             ButtonsComponent
         }
+        .onChange(of: viewModel.cartProducts, perform: shareCartProducts)
         .onAppear(perform: onAppear)
-        .onDisappear(perform: viewModel.onDisappear)
+        .onDisappear(perform: viewModel.repository.onDisappear)
     }
 }
 
 //  MARK: - Actions
 extension ProductDetailView {
-    func onAppear() {
-        viewModel.onAppear()
+    private func onAppear() {
+        viewModel.repository.onAppear(cartProducts: productsViewModel.cartProducts, product: product)
         fadeIn()
     }
     
-    func fadeIn() {
+    private func fadeIn() {
         withAnimation(.easeOut.delay(0.4)) {
             appear[0] = true
         }
@@ -63,7 +64,7 @@ extension ProductDetailView {
         }
     }
     
-    func fadeOut() {
+    private func fadeOut() {
         withAnimation(.easeIn(duration: 0.1)) {
             appear[0] = false
             appear[1] = false
@@ -72,20 +73,17 @@ extension ProductDetailView {
         }
     }
     
-    func dismissAction(completion: @escaping() -> Void) {
-        fadeOut()
-        
-        withAnimation(.springAnimation) {
-            completion()
-        }
-    }
-    
-    func dismissDetail() {
+    private func dismissDetail() {
         fadeOut()
         
         withAnimation(.springAnimation.delay(0.3)) {
-            productsViewModel.dismissProductDetail()
+            productsViewModel.repository.dismissProductDetail()
         }
+    }
+    
+    private func shareCartProducts(cartProducts: [ProductModel]) {
+        guard !cartProducts.isEmpty else { return }
+        productsViewModel.cartProducts = cartProducts
     }
 }
 
@@ -98,17 +96,15 @@ extension ProductDetailView {
                 
                 Spacer()
                 
-                CartButtonView()
             }
             .padding(.horizontal)
-            .opacity(appear[0] ? 1 : 0)
             
             Spacer()
             
-            AddToCartButtonView(price: "$\(product.price)", action: {})
-                .opacity(appear[3] ? 1 : 0)
+            AddToCartButtonView(price: "$\(product.price)", action: { viewModel.repository.addToCart(product: product) })
                 .padding(.bottom, 30)
         }
+        .opacity(appear[3] ? 1 : 0)
        
     }
     
