@@ -95,6 +95,7 @@
 		11E746E729AA390F0083EC75 /* CartUseCases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E746BF29AA390F0083EC75 /* CartUseCases.swift */; };
 		11E746E829AA390F0083EC75 /* CartUseCasesFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E746C029AA390F0083EC75 /* CartUseCasesFactory.swift */; };
 		11E746E929AA390F0083EC75 /* CartUseCasesOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E746C129AA390F0083EC75 /* CartUseCasesOutput.swift */; };
+		11E746ED29AA3FB80083EC75 /* ProductsServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E746EC29AA3FB80083EC75 /* ProductsServices.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -207,6 +208,7 @@
 		11E746BF29AA390F0083EC75 /* CartUseCases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartUseCases.swift; sourceTree = "<group>"; };
 		11E746C029AA390F0083EC75 /* CartUseCasesFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartUseCasesFactory.swift; sourceTree = "<group>"; };
 		11E746C129AA390F0083EC75 /* CartUseCasesOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartUseCasesOutput.swift; sourceTree = "<group>"; };
+		11E746EC29AA3FB80083EC75 /* ProductsServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsServices.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -408,8 +410,8 @@
 		1146E94F29A13A7600420964 /* SuportingFiles */ = {
 			isa = PBXGroup;
 			children = (
-				1146E95029A13A7600420964 /* Localizable.strings */,
 				1146E95329A13A7600420964 /* AppConfig */,
+				1146E95029A13A7600420964 /* Localizable.strings */,
 			);
 			path = SuportingFiles;
 			sourceTree = "<group>";
@@ -595,6 +597,7 @@
 		116F8E2729AA30CF00B1D30B /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				11E746EB29AA3FAD0083EC75 /* Products */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1099,6 +1102,14 @@
 			path = UseCases;
 			sourceTree = "<group>";
 		};
+		11E746EB29AA3FAD0083EC75 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				11E746EC29AA3FB80083EC75 /* ProductsServices.swift */,
+			);
+			path = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1291,6 +1302,7 @@
 				11E746E929AA390F0083EC75 /* CartUseCasesOutput.swift in Sources */,
 				110ADA2B29A82EAB00E3519F /* CartProductLocal.swift in Sources */,
 				11E746E129AA390F0083EC75 /* CartView.swift in Sources */,
+				11E746ED29AA3FB80083EC75 /* ProductsServices.swift in Sources */,
 				110ADA2929A82EAB00E3519F /* CartProductDataManager.swift in Sources */,
 				1191FAB829A944D700790D05 /* Me.swift in Sources */,
 				11E746D529AA390F0083EC75 /* ProductsUseCasesOutput.swift in Sources */,

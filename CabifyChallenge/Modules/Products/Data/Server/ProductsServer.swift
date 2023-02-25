@@ -12,8 +12,14 @@
 
 import Foundation
 
-protocol ProductsServerProtocol {}
+protocol ProductsServerProtocol {
+    func getProducts() async throws -> [ProductResponse]
+}
 
 final class ProductsServer: Network, ProductsServer.ServerCalls {
     typealias ServerCalls = ProductsServerProtocol
+    
+    func getProducts() async throws -> [ProductResponse] {
+       try await manager.getProducts().products
+    }
 }

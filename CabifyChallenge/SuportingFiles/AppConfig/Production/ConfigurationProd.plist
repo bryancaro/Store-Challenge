@@ -10,6 +10,8 @@
 	<string>prod</string>
 	<key>baseUrlWeb</key>
 	<string></string>
+	<key>baseHost</key>
+	<string>gist.githubusercontent.com</string>
 	<key>version</key>
 	<string>1.0.0</string>
 	<key>build</key>

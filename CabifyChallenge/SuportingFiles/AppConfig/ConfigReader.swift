@@ -8,6 +8,10 @@
 import Foundation
 
 class ConfigReader: NSObject {
+    static func baseHost() -> String {
+        valueFromPlist("baseHost")!
+    }
+    
     static func baseUrl() -> String {
         valueFromPlist("baseUrlWeb")!
     }
