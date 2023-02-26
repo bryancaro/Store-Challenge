@@ -80,6 +80,7 @@ extension ProductsViewModel: ProductsUseCasesOutputProtocol {
     
     func openCartSuccess() {
         print("[🟢] [ProductsViewModel] [openCart]")
+        showProductDetail = false
         sheetType = .cart
     }
     

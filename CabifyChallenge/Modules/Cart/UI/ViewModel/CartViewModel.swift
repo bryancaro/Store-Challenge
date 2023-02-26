@@ -16,6 +16,7 @@ final class CartViewModel: ObservableObject {
     @Published var isLoading = true
     
     ///
+    @Published var products = [ProductModel]()
     @Published var cartProducts = [ProductModel]()
     @Published var totalAmount: Double = 0
     ///
@@ -32,13 +33,19 @@ final class CartViewModel: ObservableObject {
             self.isLoading = false
         })
     }
+    
+    func getTotalPrice() {
+        totalAmount = cartProducts.map({ $0.price }).reduce(0, +)
+    }
 }
 
 //  MARK: - UseCasesOutputProtocol
 extension CartViewModel: CartUseCasesOutputProtocol {
-    func onAppearSuccess(cartProducts: [ProductModel]) {
+    func onAppearSuccess(products: [ProductModel], cartProducts: [ProductModel]) {
         print("[🟢] [CartViewModel] [onAppear]")
+        self.products = products
         self.cartProducts = cartProducts
+        getTotalPrice()
         hideLoadingView()
     }
     
@@ -49,7 +56,9 @@ extension CartViewModel: CartUseCasesOutputProtocol {
     func deletedCartProductSuccess(index: Int, cartProducts: [ProductModel]) {
         print("[🟢] [CartViewModel] [deletedCartProduct]")
         guard self.cartProducts.indices.contains(index) else { return }
-        self.cartProducts.remove(at: index)
+        let product = cartProducts[index]
+        deletedCartProduct(product: product, products: &products, cartProducts: &self.cartProducts)
+        getTotalPrice()
         haptic(type: .success)
     }
     

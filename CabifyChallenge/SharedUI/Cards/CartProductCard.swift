@@ -1,5 +1,5 @@
 //
-//  CartProductView.swift
+//  CartProductCard.swift
 //  CabifyChallenge
 //
 //  Created for CabifyChallenge in 2023
@@ -12,7 +12,7 @@
 
 import SwiftUI
 
-struct CartProductView: View {
+struct CartProductCard: View {
     //  MARK: - Observed Object
     //  MARK: - Variables
     @State private var showCardAnimation = false
@@ -51,7 +51,7 @@ struct CartProductView: View {
 }
 
 //  MARK: - Actions
-extension CartProductView {
+extension CartProductCard {
     private func onAppear() {
         withAnimation(.springAnimation.delay(0.3)) {
             showCardAnimation = true
@@ -60,7 +60,7 @@ extension CartProductView {
 }
 
 //  MARK: - Local Components
-extension CartProductView {
+extension CartProductCard {
     private var ProductDataComponent: some View {
         VStack(alignment: .leading, spacing: 10) {
             VStack(alignment: .leading, spacing: 0) {
@@ -70,7 +70,7 @@ extension CartProductView {
                     .multilineTextAlignment(.leading)
                     .lineLimit(2)
                 
-                if !product.discountApplied {
+                if product.isPromoApplied {
                     Text("label_discount_applied")
                         .font(.caption2)
                         .fontWeight(.light)
@@ -85,8 +85,8 @@ extension CartProductView {
                     .font(.caption.bold())
                     .lineLimit(1)
                 
-                if !product.discountApplied {
-                    Text("$\(4.545, specifier: "%2.f")")
+                if product.isPromoApplied {
+                    Text("$\(product.priceUnit, specifier: "%2.f")")
                         .font(.caption2)
                         .foregroundColor(.gray)
                         .strikethrough()
@@ -95,6 +95,7 @@ extension CartProductView {
             }
         }
     }
+    
     private var DeleteButtonComponent: some View {
         HStack {
             Spacer()
@@ -116,6 +117,6 @@ extension CartProductView {
 //  MARK: - Preview
 struct CartProductView_Previews: PreviewProvider {
     static var previews: some View {
-        CartProductView(product: ProductModel.test, action: {})
+        CartProductCard(product: ProductModel.test, action: {})
     }
 }

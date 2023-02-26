@@ -21,6 +21,9 @@ struct ProductDetailView: View {
     @State private var appear = [false, false, false, false]
     var product: ProductModel
     var namespace: Namespace.ID
+    var color: Color {
+        viewModel.product.isPromoApplied ? .red : .CabifyColor
+    }
     //  MARK: - Principal View
     var body: some View {
         ZStack {
@@ -45,7 +48,7 @@ struct ProductDetailView: View {
 //  MARK: - Actions
 extension ProductDetailView {
     private func onAppear() {
-        viewModel.repository.onAppear(cartProducts: productsViewModel.cartProducts, product: product)
+        viewModel.repository.onAppear(products: productsViewModel.products, cartProducts: productsViewModel.cartProducts, product: product)
         fadeIn()
     }
     
@@ -84,6 +87,7 @@ extension ProductDetailView {
     private func shareCartProducts(cartProducts: [ProductModel]) {
         guard !cartProducts.isEmpty else { return }
         productsViewModel.cartProducts = cartProducts
+        productsViewModel.products = viewModel.products
     }
 }
 
@@ -101,11 +105,10 @@ extension ProductDetailView {
             
             Spacer()
             
-            AddToCartButtonView(price: "$\(product.price)", action: { viewModel.repository.addToCart(product: product) })
+            AddToCartButtonView(price: $viewModel.price, color: color, action: { viewModel.repository.addToCart(product: viewModel.product) })
                 .padding(.bottom, 30)
         }
         .opacity(appear[3] ? 1 : 0)
-       
     }
     
     private var CoverComponent: some View {
@@ -132,6 +135,24 @@ extension ProductDetailView {
                     .offset(y: scrollY > 0 ? -scrollY : 0)
             )
             .mediumShadow(.md_2, color: .CabifyColor)
+            .overlay(
+                ZStack {
+                    if viewModel.product.isPromoApplied {
+                        Text(product.code.promotionBanner)
+                            .font(.body.bold())
+                            .foregroundColor(.white)
+                            .padding(5)
+                            .background(Color.red)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                            .mediumShadow(.md_2, color: .red)
+                            .frame(maxHeight: .infinity, alignment: .bottom)
+                            .offset(y: 15)
+                            .offset(y: scrollY > 0 ? -scrollY+5 : 0)
+                            .scaleEffect(scrollY > 0 ? (scrollY / 100) + 1 : 1)
+                    }
+                }
+            )
+            .animation(.default, value: viewModel.product.isPromoApplied)
         }
         .frame(height: 450)
     }
@@ -139,7 +160,7 @@ extension ProductDetailView {
     private var ContentComponent: some View {
         VStack(alignment: .leading, spacing: 20) {
             VStack(alignment: .leading, spacing: 0) {
-                Text(product.code)
+                Text("default_title")
                     .font(.body.bold())
                     .foregroundColor(.Black1)
                 

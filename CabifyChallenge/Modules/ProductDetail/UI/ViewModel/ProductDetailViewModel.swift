@@ -16,8 +16,10 @@ final class ProductDetailViewModel: ObservableObject {
     @Published var isLoading = false
     
     ///
+    @Published var products = [ProductModel]()
     @Published var cartProducts = [ProductModel]()
     @Published var product = ProductModel.empty
+    @Published var price: Double = 0
     ///
     
     var repository: ProductDetailUseCasesProtocol!
@@ -36,10 +38,12 @@ final class ProductDetailViewModel: ObservableObject {
 
 //  MARK: - UseCasesOutputProtocol
 extension ProductDetailViewModel: ProductDetailUseCasesOutputProtocol {
-    func onAppearSuccess(cartProducts: [ProductModel], product: ProductModel) {
+    func onAppearSuccess(products: [ProductModel], cartProducts: [ProductModel], product: ProductModel) {
         print("[🟢] [ProductDetailViewModel] [onAppear]")
+        self.products = products
         self.cartProducts = cartProducts
         self.product = product
+        price = product.price
     }
     
     func onDisappearSuccess() {
@@ -49,7 +53,14 @@ extension ProductDetailViewModel: ProductDetailUseCasesOutputProtocol {
     func addedToCartSuccess(product: ProductModel) {
         print("[🟢] [ProductDetailViewModel] [addedToCart]")
         haptic(type: .success)
-        self.cartProducts.append(product)
+        addProductToCart(product: product, products: &products, cartProducts: &cartProducts)
+        updateProductPrice()
+    }
+    
+    func updateProductPrice() {
+        guard let index = products.firstIndex(where: { $0.code == product.code }) else { return }
+        product.price = products[index].price
+        price = products[index].price
     }
     
     func defaultError(_ errorString: String) {

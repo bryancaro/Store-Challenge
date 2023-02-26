@@ -27,8 +27,8 @@ final class CartUseCasesOutputComposer: CartUseCasesOutputProtocol {
         self.outputs = outputs
     }
     
-    func onAppearSuccess(cartProducts: [ProductModel]) {
-        outputs.forEach({ $0.onAppearSuccess(cartProducts: cartProducts) })
+    func onAppearSuccess(products: [ProductModel], cartProducts: [ProductModel]) {
+        outputs.forEach({ $0.onAppearSuccess(products: products, cartProducts: cartProducts) })
     }
     
     func onDisappearSuccess() {

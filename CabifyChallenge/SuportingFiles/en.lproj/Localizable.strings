@@ -5,6 +5,8 @@
   Created by Bryan Caro on 7/9/22.
   
 */
+"store_title" = "Madrid";
+"store_budge" = "store";
 "default_title" = "Hello Cabify";
 "orders_order_price" = "Price";
 "label_add_to_cart" = "Add to cart";
@@ -17,3 +19,5 @@
 "product_empty_subtitle" = "It looks like we have a problem, please try again later!";
 "develop_by" = "Develop by ";
 "pay_label" = "Pay";
+"free_products" = "Free product";
+"lowerPrice_products" = "Lower price";

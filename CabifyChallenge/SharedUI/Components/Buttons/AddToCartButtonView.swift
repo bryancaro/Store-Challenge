@@ -15,7 +15,8 @@ import SwiftUI
 struct AddToCartButtonView: View {
     //  MARK: - Observed Object    
     //  MARK: - Variables
-    var price: String
+    @Binding var price: Double
+    var color: Color = .CabifyColor
     var action: () -> Void
     //  MARK: - Principal View
     var body: some View {
@@ -25,7 +26,7 @@ struct AddToCartButtonView: View {
                     Text("orders_order_price")
                         .font(.caption)
                     
-                    Text("$45")
+                    Text("$\(price, specifier: "%2.f")")
                         .font(.body.bold())
                 }
                 .foregroundColor(.Black1)
@@ -46,9 +47,9 @@ struct AddToCartButtonView: View {
                     }
                     .frame(height: 50)
                     .padding(.horizontal)
-                    .background(Color.CabifyColor)
+                    .background(color)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .smallShadow(.sm_4, color: .CabifyColor)
+                    .smallShadow(.sm_4, color: color)
                 }, hapticStyle: .success)
             }
             .padding()
@@ -69,6 +70,6 @@ extension AddToCartButtonView {}
 //  MARK: - Preview
 struct AddToCartButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        AddToCartButtonView(price: "45", action: {})
+        AddToCartButtonView(price: .constant(0), action: {})
     }
 }

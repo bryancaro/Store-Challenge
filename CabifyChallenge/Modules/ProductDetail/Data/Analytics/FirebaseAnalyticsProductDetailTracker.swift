@@ -13,7 +13,7 @@
 import Foundation
 
 final class FirebaseAnalyticsProductDetailTracker: ProductDetailUseCasesOutputProtocol {
-    func onAppearSuccess(cartProducts: [ProductModel], product: ProductModel) {
+    func onAppearSuccess(products: [ProductModel], cartProducts: [ProductModel], product: ProductModel) {
         print("[🟢] [FirebaseAnalyticsProductDetailTracker] [onAppear]")
     }
     

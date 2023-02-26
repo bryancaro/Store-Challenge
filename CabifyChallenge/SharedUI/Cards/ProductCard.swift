@@ -67,6 +67,7 @@ extension ProductCard {
             RoundedRectangle(cornerRadius: 10, style: .continuous)
                 .matchedGeometryEffect(id: "mask\(product.id)", in: namespace)
         )
+        .overlay(PromotionBannerComponent)
     }
     
     private var ProductContentComponent: some View {
@@ -81,8 +82,8 @@ extension ProductCard {
                     .font(.callout.bold())
                     .lineLimit(1)
                 
-                if true {
-                    Text("$245\(4.545, specifier: "%2.f")")
+                if product.isPromoApplied {
+                    Text("$\(product.priceUnit, specifier: "%2.f")")
                         .font(.caption2)
                         .foregroundColor(.gray)
                         .strikethrough()
@@ -100,6 +101,21 @@ extension ProductCard {
         )
         .onPreferenceChange(ProductCardPreferenceKey.self) { value in
             height = ProductCard.sizeImage + value
+        }
+    }
+    
+    private var PromotionBannerComponent: some View {
+        ZStack {
+            if product.isPromoApplied {
+                Text(product.code.promotionBanner)
+                    .font(.caption2.bold())
+                    .foregroundColor(.white)
+                    .padding(5)
+                    .background(Color.red)
+                    .frame(maxHeight: .infinity, alignment: .top)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+                    .padding(.top)
+            }
         }
     }
 }

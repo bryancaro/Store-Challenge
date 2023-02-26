@@ -28,6 +28,8 @@ struct CartView: View {
                 CartProductsComponent
                 
                 PayButtonView(price: $viewModel.totalAmount, title: "pay_label".localized, action: {})
+                    .opacity(viewModel.isLoading ? 0 : 1)
+                    .animation(.springAnimation.delay(0.4), value: viewModel.isLoading)
             }
         }
         .onAppear(perform: onAppear)
@@ -38,11 +40,12 @@ struct CartView: View {
 //  MARK: - Actions
 extension CartView {
     private func onAppear() {
-        viewModel.repository.onAppear(cartProducts: productsViewModel.cartProducts)
+        viewModel.repository.onAppear(products: productsViewModel.products, cartProducts: productsViewModel.cartProducts)
     }
     
     private func onDisappear() {
         productsViewModel.cartProducts = viewModel.cartProducts
+        productsViewModel.products = viewModel.products
     }
     
     private func dismissAction() {
@@ -83,7 +86,7 @@ extension CartView {
                 if !viewModel.cartProducts.isEmpty {
                     ForEach(viewModel.cartProducts.indices, id: \.self) { index in
                         if viewModel.cartProducts.indices.contains(index) {
-                            CartProductView(product: viewModel.cartProducts[index],
+                            CartProductCard(product: viewModel.cartProducts[index],
                                             action: {
                                 viewModel.repository.deleteCartProduct(index, cartProducts: viewModel.cartProducts)
                             })

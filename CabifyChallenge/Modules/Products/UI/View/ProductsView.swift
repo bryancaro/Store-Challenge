@@ -62,11 +62,11 @@ extension ProductsView {
             LogoComponent
             
             VStack(spacing: 0) {
-                Text("Madrid Store")
+                Text("store_title")
                     .font(.title.bold())
                     .foregroundColor(.Black1)
                 
-                Text("Store")
+                Text("store_budge")
                     .font(.caption2.bold())
                     .foregroundColor(.White)
                     .minimumScaleFactor(0.01)

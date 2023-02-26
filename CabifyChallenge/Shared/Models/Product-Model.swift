@@ -5,7 +5,7 @@
 //  Created by Bryan Caro on 23/2/23.
 //
 
-import Foundation
+import SwiftUI
 
 //  MARK: - RESPONSE
 struct ProductsResponse: Decodable {
@@ -13,7 +13,7 @@ struct ProductsResponse: Decodable {
 }
 
 struct ProductResponse: Decodable {
-    let code: String?
+    let code: ProductCode?
     let name: String?
     let price: Double?
 }
@@ -32,56 +32,48 @@ struct ProductsModel {
 }
 
 struct ProductModel: Identifiable, Equatable {
-    enum ProductCode: String {
-        case voucher = "VOUCHER"
-        case tshirt = "TSHIRT"
-        case mug = "MUG"
-        
-        var image: String {
-            switch self {
-            case .voucher:
-                return "image-1"
-            case .tshirt:
-                return "image-3"
-            case .mug:
-                return "image-2"
-            }
-        }
+    static func == (lhs: ProductModel, rhs: ProductModel) -> Bool {
+        lhs.id == rhs.id
     }
     
     let id: String = UUID().uuidString
-    let code: String
+    let code: ProductCode
     let name: String
-    let price: Double
     let image: String
-    var discountApplied = false
-    var discountPrice: Double = 0
-    
-    init(_ response: ProductResponse) {
-        self.code = response.code ?? ""
-        self.name = response.name ?? ""
-        self.price = response.price ?? 0
-        self.image = ProductCode(rawValue: code)?.image ?? "error-image"
+    let priceUnit: Double
+    var price: Double
+    var isPromoApplied: Bool {
+        price != priceUnit
     }
     
-    init(code: String, name: String, price: Double) {
+    init(_ response: ProductResponse) {
+        self.code = response.code ?? .unowned
+        self.name = response.name ?? ""
+        self.price = response.price ?? 0
+        self.image = (response.code ?? .unowned).image
+        self.priceUnit = response.price ?? 0
+    }
+    
+    init(code: ProductCode, name: String, price: Double, unitPrice: Double) {
         self.code = code
         self.name = name
         self.price = price
-        self.image = ProductCode(rawValue: code)?.image ?? "error-image"
+        self.priceUnit = unitPrice
+        self.image = code.image
     }
 }
 
 //  MARK: - EXTENSION MODEL
 extension ProductModel {
-    static let empty = ProductModel(code: "", name: "", price: 0)
+    static let empty = ProductModel(code: .unowned, name: "", price: 0, unitPrice: 20)
     
-    static let test = ProductModel(code: "TSHIRT", name: "Cabify T-Shirt", price: 20)
+    static let test = ProductModel(code: .tshirt, name: "Cabify T-Shirt", price: 20, unitPrice: 20)
     
     static let testArray = [
-        ProductModel(code: "VOUCHER", name: "Cabify Voucher", price: 5),
-        ProductModel(code: "PS5", name: "PlayStation 5", price: 400),
-        ProductModel(code: "TSHIRT", name: "Cabify T-Shirt", price: 20),
-        ProductModel(code: "MUG", name: "Cabify Coffee Mug", price: 7.5)
+        ProductModel(code: .voucher, name: "Cabify Voucher", price: 5, unitPrice: 20),
+        ProductModel(code: .unowned, name: "PlayStation 5", price: 400, unitPrice: 20),
+        ProductModel(code: .tshirt, name: "Cabify T-Shirt", price: 20, unitPrice: 20),
+        ProductModel(code: .mug, name: "Cabify Coffee Mug", price: 7.5, unitPrice: 20)
     ]
 }
+
