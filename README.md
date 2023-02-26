@@ -9,14 +9,14 @@ The application offers a wide variety of products from different categories that
 
 ![Swift](https://img.shields.io/badge/Swift-UI-blue.svg)
 
-#### Características: 
-     
-- Escrito en Swift 5.7 & Xcode 14.2
+#### Features:
+
+- Written in Swift 5.7 & Xcode 14.2
 - iOS 14 & SwiftUI
-- Arquitectura Model View View Model (MVVM)
+- Model View View Model (MVVM) architecture
 - TDD
 - Async Await
-- Datos suministrados por la API de Punk (https://gist.githubusercontent.com)
+- Data provided by the Punk API (https://gist.githubusercontent.com)
 - Package Dependencies (ConfettiSwiftUI)
 
 #### Requisitos: 
