@@ -11,6 +11,7 @@
 //
 
 import SwiftUI
+import ConfettiSwiftUI
 
 struct MeView: View {
     //  MARK: - Observed Object
@@ -23,34 +24,42 @@ struct MeView: View {
         ZStack(alignment: .top) {
             Color.white.edgesIgnoringSafeArea(.all)
             
-            CoverComponent
-            
-            VStack(spacing: 20) {
-                Text(viewModel.me.ME_TITLE)
-                    .font(.title2)
-                    .bold()
-                    .multilineTextAlignment(.center)
-                
-                Text(viewModel.me.ME_DESCRIPTION)
-                    .font(.body)
-                    .multilineTextAlignment(.leading)
-                
-                Button(action: dismissAction) {
-                    Text("Dismiss")
+            ScrollView {
+                VStack(spacing: 20) {
+                    Text(viewModel.me.ME_TITLE)
                         .font(.title2)
                         .bold()
-                        .foregroundColor(.white)
-                        .frame(width: screen.width - 100, height: 45, alignment: .center)
-                        .background(Color.CabifyColor)
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                        .shadow(color: Color.black.opacity(0.4), radius: 15, x: 0, y: 10)
+                        .multilineTextAlignment(.center)
+                    
+                    Text(viewModel.me.ME_DESCRIPTION)
+                        .font(.body)
+                        .multilineTextAlignment(.leading)
+                    
+                    Button(action: dismissAction) {
+                        Text("Dismiss")
+                            .font(.title2)
+                            .bold()
+                            .foregroundColor(.white)
+                            .frame(width: screen.width - 100, height: 45, alignment: .center)
+                            .background(Color.CabifyColor)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                            .shadow(color: Color.black.opacity(0.4), radius: 15, x: 0, y: 10)
+                    }
+                    .buttonStyle(.plain)
+                    .accessibilityIdentifier("skipMeButton")
+                    
                 }
-                .buttonStyle(.plain)
-                .accessibilityIdentifier("skipMeButton")
+                .padding(.horizontal)
+                .offset(y: 440)
+                
+                Spacer()
+                    .frame(height: 500)
             }
-            .padding(.horizontal)
-            .offset(y: 440)
+            
+            CoverComponent
+            
         }
+        .confettiCannon(counter: $viewModel.counter, repetitions: 3, repetitionInterval: 0.7)
         .onAppear(perform: viewModel.onAppear)
         .onDisappear(perform: viewModel.onDisappear)
     }

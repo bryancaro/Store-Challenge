@@ -11,6 +11,7 @@
 //
 
 import SwiftUI
+import ConfettiSwiftUI
 
 struct CartView: View {
     //  MARK: - Observed Object
@@ -19,6 +20,7 @@ struct CartView: View {
     @Environment(\.presentationMode) var presentationMode
     
     //  MARK: - Variables
+    @State private var counter: Int = 0
     //  MARK: - Principal View
     var body: some View {
         ZStack {
@@ -27,11 +29,12 @@ struct CartView: View {
                 
                 CartProductsComponent
                 
-                PayButtonView(price: $viewModel.totalAmount, title: "pay_label".localized, action: {})
+                PayButtonView(price: $viewModel.totalAmount, title: "pay_label".localized, action: buyAction)
                     .opacity(viewModel.isLoading ? 0 : 1)
                     .animation(.springAnimation.delay(0.4), value: viewModel.isLoading)
             }
         }
+        .confettiCannon(counter: $counter, num:1, confettis: [.text("💵"), .text("💶"), .text("💷"), .text("💴")], confettiSize: 30, repetitions: 50, repetitionInterval: 0.1)
         .onAppear(perform: onAppear)
         .onDisappear(perform: onDisappear)
     }
@@ -50,6 +53,10 @@ extension CartView {
     
     private func dismissAction() {
         presentationMode.wrappedValue.dismiss()
+    }
+    
+    private func buyAction() {
+        counter += 1
     }
 }
 

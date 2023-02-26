@@ -18,8 +18,11 @@ class MeViewModel: ObservableObject {
     @Published var viewState = CGSize.zero
     @Published var isDragging = false
     @Published var me = Me()
+    @Published var counter: Int = 0
     
-    func onAppear() {}
+    func onAppear() {
+        counter += 1
+    }
     
     func onDisappear() {}
 }
