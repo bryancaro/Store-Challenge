@@ -70,39 +70,31 @@ final class ProductsViewModel: ObservableObject {
 //  MARK: - UseCasesOutputProtocol
 extension ProductsViewModel: ProductsUseCasesOutputProtocol {
     func onAppearSuccess() {
-        print("[🟢] [ProductsViewModel] [onAppear]")
         getProducts()
     }
     
-    func onDisappearSuccess() {
-        print("[🟢] [ProductsViewModel] [onDisappear]")
-    }
+    func onDisappearSuccess() {}
     
     func openCartSuccess() {
-        print("[🟢] [ProductsViewModel] [openCart]")
         showProductDetail = false
         sheetType = .cart
     }
     
     func openMeSuccess() {
-        print("[🟢] [ProductsViewModel] [openMe]")
         sheetType = .me
     }
     
     func openProductDetailSuccess(product: ProductModel) {
-        print("[🟢] [ProductsViewModel] [openProductDetail]")
         self.product = product
         showProductDetail = true
     }
     
     func dismissProductDetailSuccess() {
-        print("[🟢] [ProductsViewModel] [dismissProductDetail]")
         showProductDetail = false
         self.product = ProductModel.empty
     }
     
     func defaultError(_ errorString: String) {
-        print("[🔴] [ProductsViewModel] [Error]: \(errorString)")
         haptic(type: .error)
         isLoading = false
     }

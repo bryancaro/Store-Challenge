@@ -30,13 +30,11 @@ final class ProductsRepository {
 
 extension ProductsRepository: ProductsUseCasesProtocol {
     func onAppear() {
-        print("☀️ onAppear [Products]")
         delegate?.onAppearSuccess()
         output.onAppearSuccess()
     }
     
     func onDisappear() {
-        print("🌑 onDisappear [Products]")
         delegate?.onDisappearSuccess()
         output.onDisappearSuccess()
     }
@@ -66,8 +64,7 @@ extension ProductsRepository: ProductsUseCasesProtocol {
             let response = try await server.getProducts()
             let model = response.map({ ProductModel($0) })
             return model
-        } catch let error {
-            print(error.localizedDescription)
+        } catch {
             return [ProductModel]()
         }
     }

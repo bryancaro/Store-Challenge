@@ -13,27 +13,15 @@
 import Foundation
 
 final class FirebaseAnalyticsProductsTracker: ProductsUseCasesOutputProtocol {
-    func onAppearSuccess() {
-        print("[🟢] [FirebaseAnalyticsProductsTracker] [onAppear]")
-    }
+    func onAppearSuccess() {}
     
-    func onDisappearSuccess() {
-        print("[🟢] [FirebaseAnalyticsProductsTracker] [onDisappear]")
-    }
+    func onDisappearSuccess() { }
     
-    func openCartSuccess() {
-        print("[🟢] [FirebaseAnalyticsProductsTracker] [openCart]")
-    }
+    func openCartSuccess() {}
     
-    func openMeSuccess() {
-        print("[🟢] [FirebaseAnalyticsProductsTracker] [openMeSuccess]")
-    }
+    func openMeSuccess() {}
     
-    func openProductDetailSuccess(product: ProductModel) {
-        print("[🟢] [FirebaseAnalyticsProductsTracker] [openProductDetailSuccess]")
-    }
+    func openProductDetailSuccess(product: ProductModel) {}
     
-    func dismissProductDetailSuccess() {
-        print("[🟢] [FirebaseAnalyticsProductsTracker] [dismissProductDetailSuccess]")
-    }
+    func dismissProductDetailSuccess() {}
 }

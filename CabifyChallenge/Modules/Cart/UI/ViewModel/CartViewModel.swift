@@ -42,19 +42,15 @@ final class CartViewModel: ObservableObject {
 //  MARK: - UseCasesOutputProtocol
 extension CartViewModel: CartUseCasesOutputProtocol {
     func onAppearSuccess(products: [ProductModel], cartProducts: [ProductModel]) {
-        print("[🟢] [CartViewModel] [onAppear]")
         self.products = products
         self.cartProducts = cartProducts
         getTotalPrice()
         hideLoadingView()
     }
     
-    func onDisappearSuccess() {
-        print("[🟢] [CartViewModel] [onDisappear]")
-    }
+    func onDisappearSuccess() {}
     
     func deletedCartProductSuccess(index: Int, cartProducts: [ProductModel]) {
-        print("[🟢] [CartViewModel] [deletedCartProduct]")
         guard self.cartProducts.indices.contains(index) else { return }
         let product = cartProducts[index]
         deletedCartProduct(product: product, products: &products, cartProducts: &self.cartProducts)
@@ -63,7 +59,6 @@ extension CartViewModel: CartUseCasesOutputProtocol {
     }
     
     func defaultError(_ errorString: String) {
-        print("[🔴] [CartViewModel] [Error]: \(errorString)")
         haptic(type: .error)
         isLoading = false
     }

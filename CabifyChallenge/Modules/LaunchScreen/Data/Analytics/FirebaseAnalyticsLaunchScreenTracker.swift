@@ -13,11 +13,7 @@
 import Foundation
 
 final class FirebaseAnalyticsLaunchScreenTracker: LaunchScreenUseCasesOutputProtocol {
-    func onAppearSuccess() {
-        print("[🟢] [FirebaseAnalyticsLaunchScreenTracker] [onAppear]")
-    }
+    func onAppearSuccess() {}
     
-    func onDisappearSuccess() {
-        print("[🟢] [FirebaseAnalyticsLaunchScreenTracker] [onDisappear]")
-    }
+    func onDisappearSuccess() {}
 }

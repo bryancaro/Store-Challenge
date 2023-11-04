@@ -30,13 +30,11 @@ final class LaunchScreenRepository {
 
 extension LaunchScreenRepository: LaunchScreenUseCasesProtocol {
     func onAppear() {
-        print("☀️ onAppear [LaunchScreen]")
         delegate?.onAppearSuccess()
         output.onAppearSuccess()
     }
     
     func onDisappear() {
-        print("🌑 onDisappear [LaunchScreen]")
         delegate?.onDisappearSuccess()
         output.onDisappearSuccess()
     }

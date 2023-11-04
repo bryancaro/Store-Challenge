@@ -30,13 +30,11 @@ final class CartRepository {
 
 extension CartRepository: CartUseCasesProtocol {
     func onAppear(products: [ProductModel], cartProducts: [ProductModel]) {
-        print("☀️ onAppear [Cart]")
         delegate?.onAppearSuccess(products: products, cartProducts: cartProducts)
         output.onAppearSuccess(products: products, cartProducts: cartProducts)
     }
     
     func onDisappear() {
-        print("🌑 onDisappear [Cart]")
         delegate?.onDisappearSuccess()
         output.onDisappearSuccess()
     }

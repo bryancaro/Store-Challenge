@@ -32,16 +32,12 @@ final class LaunchScreenViewModel: ObservableObject {
 //  MARK: - UseCasesOutputProtocol
 extension LaunchScreenViewModel: LaunchScreenUseCasesOutputProtocol {
     func onAppearSuccess() {
-        print("[🟢] [LaunchScreenViewModel] [onAppear]")
         hideLoadingView()
     }
     
-    func onDisappearSuccess() {
-        print("[🟢] [LaunchScreenViewModel] [onDisappear]")
-    }
+    func onDisappearSuccess() {}
     
     func defaultError(_ errorString: String) {
-        print("[🔴] [LaunchScreenViewModel] [Error]: \(errorString)")
         haptic(type: .error)
         isLoading = false
     }
