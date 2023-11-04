@@ -13,7 +13,6 @@
 import SwiftUI
 
 struct EmptyResultView: View {
-    //  MARK: - Observed Object
     //  MARK: - Variables
     @State private var showCardAnimation = false
     var type: EmptyType

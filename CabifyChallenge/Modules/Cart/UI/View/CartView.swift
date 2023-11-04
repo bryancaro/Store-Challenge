@@ -18,7 +18,7 @@ struct CartView: View {
     @EnvironmentObject private var productsViewModel: ProductsViewModel
     @StateObject private var viewModel = CartViewModel()
     @Environment(\.presentationMode) var presentationMode
-    
+
     //  MARK: - Variables
     @State private var counter: Int = 0
     //  MARK: - Principal View
@@ -26,16 +26,16 @@ struct CartView: View {
         ZStack {
             VStack {
                 TitleComponent
-                
+
                 CartProductsComponent
-                
+
                 PayButtonView(
                     price: $viewModel.totalAmount,
                     title: "pay_label".localized,
                     action: buyAction
                 )
-                    .opacity(viewModel.isLoading ? 0 : 1)
-                    .animation(.springAnimation.delay(0.4), value: viewModel.isLoading)
+                .opacity(viewModel.isLoading ? 0 : 1)
+                .animation(.springAnimation.delay(0.4), value: viewModel.isLoading)
             }
         }
         .confettiCannon(
@@ -59,16 +59,16 @@ extension CartView {
             cartProducts: productsViewModel.cartProducts
         )
     }
-    
+
     private func onDisappear() {
         productsViewModel.cartProducts = viewModel.cartProducts
         productsViewModel.products = viewModel.products
     }
-    
+
     private func dismissAction() {
         presentationMode.wrappedValue.dismiss()
     }
-    
+
     private func buyAction() {
         counter += 1
     }
@@ -82,19 +82,19 @@ extension CartView {
                 .fill(Color.gray)
                 .frame(width: 70, height: 5)
                 .padding(.top)
-            
+
             HStack {
                 BackButtonView(
                     action: dismissAction
                 )
 
                 Spacer()
-                
+
                 Text("cart_screen_title")
                     .font(.title.bold())
-                
+
                 Spacer()
-                
+
                 Spacer()
                     .frame(width: 45, height: 45)
             }
@@ -102,14 +102,14 @@ extension CartView {
         }
         .padding(.bottom, 30)
     }
-    
+
     private var CartProductsComponent: some View {
         ScrollView {
             VStack {
                 if !viewModel.cartProducts.isEmpty {
                     ForEach(viewModel.cartProducts.indices, id: \.self) { index in
                         if viewModel.cartProducts.indices.contains(index) {
-                            CartProductCard(
+                            CartProductCell(
                                 product: viewModel.cartProducts[index],
                                 action: {
                                     viewModel.repository.deleteCartProduct(

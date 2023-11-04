@@ -7,6 +7,13 @@
 
 import Foundation
 
+enum DataLoadingStatus {
+    case notStarted
+    case loading
+    case success
+    case error
+}
+
 struct AppError: Identifiable {
     let id = UUID().uuidString
     let errorString: String

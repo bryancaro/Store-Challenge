@@ -13,7 +13,6 @@
 import SwiftUI
 
 struct CartButtonView: View {
-    //  MARK: - Observed Object
     //  MARK: - Variables
     @Binding var isAnimating: Bool
     @Binding var count: Int
@@ -21,19 +20,23 @@ struct CartButtonView: View {
     //  MARK: - Principal View
     var body: some View {
         ZStack {
-            ExpButton(action: action, label: {
-                Image(systemName: "bag")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 25, height: 25)
-                    .frame(width: 45, height: 45)
-                    .background(Color.White)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .smallShadow(.sm_4)
-                    .overlay(countIndicator)
-                    .scaleEffect(isAnimating ? 1.5 : 1)
-                    .padding(.trailing, isAnimating ? 10 : 0)
-            }, impactStyle: .soft)
+            ExpButton(
+                action: action,
+                label: {
+                    Image(systemName: "bag")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 25, height: 25)
+                        .frame(width: 45, height: 45)
+                        .background(Color.White)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .smallShadow(.sm_4)
+                        .overlay(countIndicator)
+                        .scaleEffect(isAnimating ? 1.5 : 1)
+                        .padding(.trailing, isAnimating ? 10 : 0)
+                },
+                impactStyle: .soft
+            )
         }
         .animation(.spring(), value: isAnimating)
     }

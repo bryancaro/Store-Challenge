@@ -38,7 +38,7 @@ final class CartViewModelTests: XCTestCase {
         let cartProducts = ProductModel.mocks
         
         //  WHEN
-        repository?.onAppear(cartProducts: cartProducts)
+        repository?.onAppear(products: cartProducts, cartProducts: cartProducts)
         
         //  THEN
         let expectation = !sut.cartProducts.isEmpty

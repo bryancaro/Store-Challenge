@@ -13,7 +13,6 @@
 import SwiftUI
 
 struct PayButtonView: View {
-    //  MARK: - Observed Object    
     //  MARK: - Variables
     @Binding var price: Double
     var title: String

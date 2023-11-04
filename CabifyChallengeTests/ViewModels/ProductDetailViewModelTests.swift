@@ -32,7 +32,7 @@ final class ProductDetailViewModelTests: XCTestCase {
         let emptyProduct = ProductModel.empty
         
         //  WHEN
-        repository?.onAppear(cartProducts: cartProducts, product: product)
+        repository?.onAppear(products: cartProducts, cartProducts: cartProducts, product: product)
         
         //  THEN
         let expectationProduct = sut.product
@@ -47,8 +47,8 @@ final class ProductDetailViewModelTests: XCTestCase {
         let product = ProductModel.mock
         
         //  WHEN
-        repository?.onAppear(cartProducts: cartProducts, product: product)
-        
+        repository?.onAppear(products: cartProducts, cartProducts: cartProducts, product: product)
+
         //  THEN
         let expectationCartProducts = sut.cartProducts
         XCTAssertEqual(cartProducts, expectationCartProducts)

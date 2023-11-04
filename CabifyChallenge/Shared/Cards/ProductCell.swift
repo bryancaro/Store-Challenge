@@ -1,5 +1,5 @@
 //
-//  ProductCard.swift
+//  ProductCell.swift
 //  CabifyChallenge
 //
 //  Created for CabifyChallenge in 2023
@@ -12,11 +12,10 @@
 
 import SwiftUI
 
-struct ProductCard: View {
-    //  MARK: - Observed Object
+struct ProductCell: View {
     //  MARK: - Variables
     @State private var showCardAnimation = false
-    @State private var height: CGFloat = ProductCard.heightCard
+    @State private var height: CGFloat = ProductCell.heightCard
     var namespace: Namespace.ID
     var product: ProductModel
     var action: () -> Void
@@ -28,7 +27,7 @@ struct ProductCard: View {
                 
                 ProductContentComponent
             }
-            .frame(width: ProductCard.widthCard, height: height, alignment: .top)
+            .frame(width: ProductCell.widthCard, height: height, alignment: .top)
             .background(Color.white)
             .mask(RoundedRectangle(cornerRadius: 10, style: .continuous))
             .mediumShadow(.md_2)
@@ -44,12 +43,12 @@ struct ProductCard: View {
 }
 
 //  MARK: - Local Components
-extension ProductCard {
+extension ProductCell {
     private var ProductImageComponent: some View {
         VStack {
             Spacer()
         }
-        .frame(width: ProductCard.sizeImage, height: ProductCard.sizeImage)
+        .frame(width: ProductCell.sizeImage, height: ProductCell.sizeImage)
         .background(
             ZStack {
                 Image(product.image)
@@ -86,7 +85,7 @@ extension ProductCard {
                 }
             }
         }
-        .frame(width: ProductCard.sizeImage - 5)
+        .frame(width: ProductCell.sizeImage - 5)
         .padding(.bottom, 20)
         .overlay(
             GeometryReader { proxy in
@@ -95,7 +94,7 @@ extension ProductCard {
             }
         )
         .onPreferenceChange(ProductCardPreferenceKey.self) { value in
-            height = ProductCard.sizeImage + value
+            height = ProductCell.sizeImage + value
         }
     }
     
@@ -116,7 +115,7 @@ extension ProductCard {
 }
 
 //  MARK: - CONSTANTS
-extension ProductCard {
+extension ProductCell {
     static let sizeImage: CGFloat = screen.width * 0.44
     static let widthCard: CGFloat = screen.width * 0.45
     static let heightCard: CGFloat = screen.width * 0.55
@@ -127,7 +126,7 @@ extension ProductCard {
 struct ProductCard_Previews: PreviewProvider {
     @Namespace static var namespace
     static var previews: some View {
-        ProductCard(namespace: namespace, product: ProductModel.test, action: {})
+        ProductCell(namespace: namespace, product: ProductModel.test, action: {})
     }
 }
 #endif

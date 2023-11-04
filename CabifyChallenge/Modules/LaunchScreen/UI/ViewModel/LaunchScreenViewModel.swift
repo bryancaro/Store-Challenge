@@ -17,7 +17,9 @@ final class LaunchScreenViewModel: ObservableObject {
     
     var repository: LaunchScreenUseCasesProtocol!
     //  MARK: - Lifecycle
-    init(repository: LaunchScreenUseCasesProtocol = LaunchScreenUseCasesFactory().makeUseCases()) {
+    init(
+        repository: LaunchScreenUseCasesProtocol = LaunchScreenUseCasesFactory().makeUseCases()
+    ) {
         self.repository = repository
         self.repository.delegate = self
     }

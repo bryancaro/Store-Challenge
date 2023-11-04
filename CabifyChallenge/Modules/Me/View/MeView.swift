@@ -7,7 +7,7 @@
 //  Running on macOS 13.1
 //
 //  Created by Bryan Caro on 24/2/23.
-//  
+//
 //
 
 import SwiftUI
@@ -15,26 +15,25 @@ import ConfettiSwiftUI
 
 struct MeView: View {
     //  MARK: - Observed Object
-    @StateObject private var viewModel = MeViewModel()
     @Environment(\.presentationMode) var presentationMode
-    
-    //  MARK: - Variables
+    @StateObject private var viewModel = MeViewModel()
+
     //  MARK: - Principal View
     var body: some View {
         ZStack(alignment: .top) {
             Color.white.edgesIgnoringSafeArea(.all)
-            
+
             ScrollView {
                 VStack(spacing: 20) {
                     Text(viewModel.me.ME_TITLE)
                         .font(.title2)
                         .bold()
                         .multilineTextAlignment(.center)
-                    
+
                     Text(viewModel.me.ME_DESCRIPTION)
                         .font(.body)
                         .multilineTextAlignment(.leading)
-                    
+
                     Button(action: {
                         presentationMode.wrappedValue.dismiss()
                     }) {
@@ -49,17 +48,17 @@ struct MeView: View {
                     }
                     .buttonStyle(.plain)
                     .accessibilityIdentifier("skipMeButton")
-                    
+
                 }
                 .padding(.horizontal)
                 .offset(y: 440)
-                
+
                 Spacer()
                     .frame(height: 500)
             }
-            
+
             CoverComponent
-            
+
         }
         .confettiCannon(counter: $viewModel.counter, repetitions: 3, repetitionInterval: 0.7)
         .onAppear(perform: viewModel.onAppear)
@@ -78,7 +77,7 @@ extension MeView {
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 70, height: 70, alignment: .center)
                         .clipShape(Circle())
-                    
+
                     Text("Bryan Caro")
                         .font(.system(size: geometry.size.width/15, weight: .bold))
                         .foregroundColor(.White)
@@ -90,7 +89,7 @@ extension MeView {
                 .frame(width: screen.width, alignment: .center)
             }
             .offset(x: viewModel.viewState.width / 15, y: viewModel.viewState.height / 15)
-            
+
             Spacer()
         }
         .multilineTextAlignment(.center)
@@ -105,7 +104,7 @@ extension MeView {
                     .blendMode(.plusDarker)
                     .animation(Animation.linear(duration: 100).repeatForever(autoreverses: false), value: UUID())
                     .onAppear { viewModel.show = true }
-                
+
                 Image("blub_black")
                     .offset(x: -120, y: 200)
                     .rotationEffect(Angle(degrees: viewModel.show ? 360 : 0), anchor: .leading)

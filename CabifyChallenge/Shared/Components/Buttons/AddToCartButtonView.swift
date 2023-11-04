@@ -13,7 +13,6 @@
 import SwiftUI
 
 struct AddToCartButtonView: View {
-    //  MARK: - Observed Object    
     //  MARK: - Variables
     @Binding var price: Double
     var color: Color = .CabifyColor

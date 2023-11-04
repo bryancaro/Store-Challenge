@@ -1,5 +1,5 @@
 //
-//  CartProductCard.swift
+//  CartProductCell.swift
 //  CabifyChallenge
 //
 //  Created for CabifyChallenge in 2023
@@ -12,8 +12,7 @@
 
 import SwiftUI
 
-struct CartProductCard: View {
-    //  MARK: - Observed Object
+struct CartProductCell: View {
     //  MARK: - Variables
     @State private var showCardAnimation = false
     var product: ProductModel
@@ -53,7 +52,7 @@ struct CartProductCard: View {
     }
 }
 //  MARK: - Local Components
-extension CartProductCard {
+extension CartProductCell {
     private var ProductDataComponent: some View {
         VStack(alignment: .leading, spacing: 10) {
             VStack(alignment: .leading, spacing: 0) {
@@ -111,7 +110,7 @@ extension CartProductCard {
 #if DEBUG
 struct CartProductView_Previews: PreviewProvider {
     static var previews: some View {
-        CartProductCard(product: ProductModel.test, action: {})
+        CartProductCell(product: ProductModel.test, action: {})
     }
 }
 #endif

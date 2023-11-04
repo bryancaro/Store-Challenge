@@ -113,7 +113,7 @@ extension ProductsView {
             if !viewModel.products.isEmpty && !viewModel.isLoading {
                 LazyVGrid(columns: ProductsView.columns, spacing: 20) {
                     ForEach(viewModel.products.indices, id: \.self) { index in
-                        ProductCard(
+                        ProductCell(
                             namespace: productsNamespace,
                             product: viewModel.products[index],
                             action: {
@@ -166,8 +166,8 @@ extension ProductsView {
 
 //  MARK: - CONSTANTS
 extension ProductsView {
-    static let columns = [GridItem(.fixed(ProductCard.widthCard + 5)),
-                          GridItem(.fixed(ProductCard.widthCard + 5))]
+    static let columns = [GridItem(.fixed(ProductCell.widthCard + 5)),
+                          GridItem(.fixed(ProductCell.widthCard + 5))]
 }
 
 //  MARK: - Preview

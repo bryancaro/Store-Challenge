@@ -7,14 +7,14 @@
 //  Running on macOS 13.1
 //
 //  Created by Bryan Caro on 25/2/23.
-//  
+//
 //
 
 import Foundation
 
 final class ProductsViewModel: ObservableObject {
     @Published var isLoading = true
-    
+
     ///
     @Published var isAnimating = false
     @Published var products = [ProductModel]()
@@ -29,24 +29,24 @@ final class ProductsViewModel: ObservableObject {
     @Published var showProductDetail = false
     @Published var sheetType: SheetType?
     ///
-    
+
     var repository: ProductsUseCasesProtocol!
     //  MARK: - Lifecycle
     init(repository: ProductsUseCasesProtocol = ProductsUseCasesFactory().makeUseCases()) {
         self.repository = repository
         self.repository.delegate = self
     }
-    
+
     func dismissLoading() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.8, execute: {
             self.isLoading = false
         })
     }
-    
+
     func animateCartButton() {
         DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
             self.isAnimating = true
-            
+
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
                 self.isAnimating = false
             })
@@ -57,7 +57,7 @@ final class ProductsViewModel: ObservableObject {
     private func getProducts() {
         Task {
             let model = await repository.getProducts()
-            
+
             guard !model.isEmpty else { return dismissLoading() }
             await MainActor.run(body: {
                 products = model
@@ -72,28 +72,28 @@ extension ProductsViewModel: ProductsUseCasesOutputProtocol {
     func onAppearSuccess() {
         getProducts()
     }
-    
+
     func onDisappearSuccess() {}
-    
+
     func openCartSuccess() {
         showProductDetail = false
         sheetType = .cart
     }
-    
+
     func openMeSuccess() {
         sheetType = .me
     }
-    
+
     func openProductDetailSuccess(product: ProductModel) {
         self.product = product
         showProductDetail = true
     }
-    
+
     func dismissProductDetailSuccess() {
         showProductDetail = false
         self.product = ProductModel.empty
     }
-    
+
     func defaultError(_ errorString: String) {
         haptic(type: .error)
         isLoading = false
@@ -105,7 +105,7 @@ extension ProductsViewModel {
     enum SheetType: Identifiable {
         case cart
         case me
-        
+
         var id: UUID {
             UUID()
         }
