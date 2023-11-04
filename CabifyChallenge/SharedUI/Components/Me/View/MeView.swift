@@ -108,20 +108,20 @@ extension MeView {
                     .offset(x: -150, y: 100)
                     .rotationEffect(Angle(degrees: viewModel.show ? 360+90 : 90))
                     .blendMode(.plusDarker)
-                    .animation(Animation.linear(duration: 100).repeatForever(autoreverses: false))
+                    .animation(Animation.linear(duration: 100).repeatForever(autoreverses: false), value: UUID())
                     .onAppear { viewModel.show = true }
                 
                 Image("blub_black")
                     .offset(x: -120, y: 200)
                     .rotationEffect(Angle(degrees: viewModel.show ? 360 : 0), anchor: .leading)
                     .blendMode(.plusDarker)
-                    .animation(Animation.linear(duration: 100).repeatForever(autoreverses: false))
-                
+                    .animation(Animation.linear(duration: 100).repeatForever(autoreverses: false), value: UUID())
+
                 Image("blub_red")
                     .offset(x: -250, y: -200)
                     .rotationEffect(Angle(degrees: viewModel.show ? 360+90 : 90))
                     .blendMode(.plusDarker)
-                    .animation(Animation.linear(duration: 100).repeatForever(autoreverses: false))
+                    .animation(Animation.linear(duration: 100).repeatForever(autoreverses: false), value: UUID())
                     .onAppear { viewModel.show = true }
             }
         )
@@ -139,7 +139,7 @@ extension MeView {
         .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
         .shadow(color: Color.black.opacity(0.3), radius: 10, x: 0, y: 30)
         .scaleEffect(viewModel.isDragging ? 0.9 : 1)
-        .animation(.timingCurve(0.2, 0.8, 0.2, 1, duration: 0.8))
+        .animation(.timingCurve(0.2, 0.8, 0.2, 1, duration: 0.8), value: viewModel.isDragging)
         .rotation3DEffect(Angle(degrees: 5), axis: (x: viewModel.viewState.width, y: viewModel.viewState.height, z: 0))
         .gesture(
             DragGesture().onChanged { value in
