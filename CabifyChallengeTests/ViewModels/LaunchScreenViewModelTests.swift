@@ -10,9 +10,9 @@ import XCTest
 
 final class LaunchScreenViewModelTests: XCTestCase {
     var sut: LaunchScreenViewModel!
-    
+    var delegate: LaunchScreenUseCasesOutputProtocol!
     override func setUp() {
-        sut = .init()
+        sut = LaunchScreenViewModel(repository: LaunchScreenRepository(output: delegate))
     }
 
     override func tearDownWithError() throws {
