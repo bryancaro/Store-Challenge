@@ -60,16 +60,11 @@ struct AddToCartButtonView: View {
         }
     }
 }
-
-//  MARK: - Actions
-extension AddToCartButtonView {}
-
-//  MARK: - Local Components
-extension AddToCartButtonView {}
-
 //  MARK: - Preview
+#if DEBUG
 struct AddToCartButtonView_Previews: PreviewProvider {
     static var previews: some View {
         AddToCartButtonView(price: .constant(0), action: {})
     }
 }
+#endif

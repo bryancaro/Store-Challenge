@@ -15,7 +15,7 @@ import SwiftUI
 struct ProductsView: View {
     //  MARK: - Observed Object
     @StateObject private var viewModel = ProductsViewModel()
-    
+
     //  MARK: - Variables
     @Namespace var productsNamespace
     var namespace: Namespace.ID
@@ -25,16 +25,16 @@ struct ProductsView: View {
             ScrollView(showsIndicators: false) {
                 VStack(spacing: 50) {
                     StoreDetailComponent
-                    
+
                     ProductsComponent
                 }
                 .frame(maxWidth: .infinity)
             }
-                        
+
             MeComponent
-            
+
             ProductDetailComponent
-            
+
             CartButton
         }
         .sheet(item: $viewModel.sheetType, content: { type in
@@ -52,20 +52,17 @@ struct ProductsView: View {
     }
 }
 
-//  MARK: - Actions
-extension ProductsView {}
-
 //  MARK: - Local Components
 extension ProductsView {
     private var StoreDetailComponent: some View {
         VStack {
             LogoComponent
-            
+
             VStack(spacing: 0) {
                 Text("store_title")
                     .font(.title.bold())
                     .foregroundColor(.Black1)
-                
+
                 Text("store_budge")
                     .font(.caption2.bold())
                     .foregroundColor(.White)
@@ -79,7 +76,7 @@ extension ProductsView {
         }
         .frame(maxHeight: .infinity, alignment: .top)
     }
-    
+
     private var LogoComponent: some View {
         VStack {
             EmptyView()
@@ -97,27 +94,33 @@ extension ProductsView {
         )
         .multiMediumShadow(.md_4, color: Color.CabifyColor)
     }
-    
+
     private var CartButton: some View {
-        CartButtonView(isAnimating: $viewModel.isAnimating, count: $viewModel.totalProducts, action: viewModel.repository.openCartView)
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
-            .padding(.trailing, 20)
-            .opacity(viewModel.isLoading ? 0 : 1)
-            .opacity(viewModel.sheetType == .cart ? 0 : 1)
-            .animation(.easeIn(duration: 1), value: viewModel.sheetType)
+        CartButtonView(
+            isAnimating: $viewModel.isAnimating,
+            count: $viewModel.totalProducts,
+            action: viewModel.repository.openCartView
+        )
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
+        .padding(.trailing, 20)
+        .opacity(viewModel.isLoading ? 0 : 1)
+        .opacity(viewModel.sheetType == .cart ? 0 : 1)
+        .animation(.easeIn(duration: 1), value: viewModel.sheetType)
     }
-    
+
     private var ProductsComponent: some View {
         VStack {
             if !viewModel.products.isEmpty && !viewModel.isLoading {
                 LazyVGrid(columns: ProductsView.columns, spacing: 20) {
                     ForEach(viewModel.products.indices, id: \.self) { index in
-                        ProductCard(namespace: productsNamespace,
-                                    product: viewModel.products[index],
-                                    action: {
-                            let product = viewModel.products[index]
-                            viewModel.repository.openProductDetail(product: product)
-                        })
+                        ProductCard(
+                            namespace: productsNamespace,
+                            product: viewModel.products[index],
+                            action: {
+                                let product = viewModel.products[index]
+                                viewModel.repository.openProductDetail(product: product)
+                            }
+                        )
                     }
                 }
             } else if !viewModel.isLoading {
@@ -125,22 +128,25 @@ extension ProductsView {
             }
         }
     }
-    
+
     private var ProductDetailComponent: some View {
         ZStack {
             if viewModel.showProductDetail {
-                ProductDetailView(product: viewModel.product, namespace: productsNamespace)
+                ProductDetailView(
+                    product: viewModel.product,
+                    namespace: productsNamespace
+                )
             }
         }
     }
-    
+
     private var MeComponent: some View {
         Button(action: viewModel.repository.openMeView) {
             HStack {
                 Text("develop_by")
                     .font(.footnote)
                     .bold()
-                
+
                 Image("me")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
@@ -165,10 +171,12 @@ extension ProductsView {
 }
 
 //  MARK: - Preview
+#if DEBUG
 struct ProductsView_Previews: PreviewProvider {
     @Namespace static var namespace
-    
+
     static var previews: some View {
         ProductsView(namespace: namespace)
     }
 }
+#endif

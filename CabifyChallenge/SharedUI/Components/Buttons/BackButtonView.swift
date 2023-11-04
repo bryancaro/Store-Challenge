@@ -13,7 +13,6 @@
 import SwiftUI
 
 struct BackButtonView: View {
-    //  MARK: - Observed Object
     //  MARK: - Variables
     var action: () -> Void
     //  MARK: - Principal View
@@ -32,16 +31,11 @@ struct BackButtonView: View {
         }
     }
 }
-
-//  MARK: - Actions
-extension BackButtonView {}
-
-//  MARK: - Local Components
-extension BackButtonView {}
-
 //  MARK: - Preview
+#if DEBUG
 struct BackButtonView_Previews: PreviewProvider {
     static var previews: some View {
         BackButtonView(action: {})
     }
 }
+#endif

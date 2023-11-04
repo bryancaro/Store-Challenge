@@ -29,12 +29,23 @@ struct CartView: View {
                 
                 CartProductsComponent
                 
-                PayButtonView(price: $viewModel.totalAmount, title: "pay_label".localized, action: buyAction)
+                PayButtonView(
+                    price: $viewModel.totalAmount,
+                    title: "pay_label".localized,
+                    action: buyAction
+                )
                     .opacity(viewModel.isLoading ? 0 : 1)
                     .animation(.springAnimation.delay(0.4), value: viewModel.isLoading)
             }
         }
-        .confettiCannon(counter: $counter, num:1, confettis: [.text("💵"), .text("💶"), .text("💷"), .text("💴")], confettiSize: 30, repetitions: 50, repetitionInterval: 0.1)
+        .confettiCannon(
+            counter: $counter,
+            num:1,
+            confettis: [.text("💵"), .text("💶"), .text("💷"), .text("💴")],
+            confettiSize: 30,
+            repetitions: 50,
+            repetitionInterval: 0.1
+        )
         .onAppear(perform: onAppear)
         .onDisappear(perform: onDisappear)
     }
@@ -43,7 +54,10 @@ struct CartView: View {
 //  MARK: - Actions
 extension CartView {
     private func onAppear() {
-        viewModel.repository.onAppear(products: productsViewModel.products, cartProducts: productsViewModel.cartProducts)
+        viewModel.repository.onAppear(
+            products: productsViewModel.products,
+            cartProducts: productsViewModel.cartProducts
+        )
     }
     
     private func onDisappear() {
@@ -70,8 +84,10 @@ extension CartView {
                 .padding(.top)
             
             HStack {
-                BackButtonView(action: dismissAction)
-                
+                BackButtonView(
+                    action: dismissAction
+                )
+
                 Spacer()
                 
                 Text("cart_screen_title")
@@ -93,10 +109,15 @@ extension CartView {
                 if !viewModel.cartProducts.isEmpty {
                     ForEach(viewModel.cartProducts.indices, id: \.self) { index in
                         if viewModel.cartProducts.indices.contains(index) {
-                            CartProductCard(product: viewModel.cartProducts[index],
-                                            action: {
-                                viewModel.repository.deleteCartProduct(index, cartProducts: viewModel.cartProducts)
-                            })
+                            CartProductCard(
+                                product: viewModel.cartProducts[index],
+                                action: {
+                                    viewModel.repository.deleteCartProduct(
+                                        index,
+                                        cartProducts: viewModel.cartProducts
+                                    )
+                                }
+                            )
                         }
                     }
                 } else {
@@ -108,9 +129,11 @@ extension CartView {
 }
 
 //  MARK: - Preview
+#if DEBUG
 struct CartView_Previews: PreviewProvider {
     static var previews: some View {
         CartView()
             .environmentObject(ProductsViewModel())
     }
 }
+#endif

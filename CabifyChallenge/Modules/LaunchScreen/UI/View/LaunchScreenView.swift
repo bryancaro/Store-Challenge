@@ -36,9 +36,6 @@ struct LaunchScreenView: View {
     }
 }
 
-//  MARK: - Actions
-extension LaunchScreenView {}
-
 //  MARK: - Local Components
 extension LaunchScreenView {
     private var BackgroundColorComponent: some View {
@@ -66,8 +63,10 @@ extension LaunchScreenView {
 }
 
 //  MARK: - Preview
+#if DEBUG
 struct LaunchScreenView_Previews: PreviewProvider {
     static var previews: some View {
         LaunchScreenView()
     }
 }
+#endif

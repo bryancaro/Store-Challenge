@@ -39,10 +39,6 @@ struct PayButtonView: View {
         }
     }
 }
-
-//  MARK: - Actions
-extension PayButtonView {}
-
 //  MARK: - Local Components
 extension PayButtonView {
     private var PriceComponent: some View {
@@ -65,8 +61,10 @@ extension PayButtonView {
 }
 
 //  MARK: - Preview
+#if DEBUG
 struct PayButtonView_Previews: PreviewProvider {
     static var previews: some View {
         PayButtonView(price: .constant(450), title: "Pay", action: {})
     }
 }
+#endif

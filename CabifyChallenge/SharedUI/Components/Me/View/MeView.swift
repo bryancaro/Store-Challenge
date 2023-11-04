@@ -35,7 +35,9 @@ struct MeView: View {
                         .font(.body)
                         .multilineTextAlignment(.leading)
                     
-                    Button(action: dismissAction) {
+                    Button(action: {
+                        presentationMode.wrappedValue.dismiss()
+                    }) {
                         Text("Dismiss")
                             .font(.title2)
                             .bold()
@@ -62,13 +64,6 @@ struct MeView: View {
         .confettiCannon(counter: $viewModel.counter, repetitions: 3, repetitionInterval: 0.7)
         .onAppear(perform: viewModel.onAppear)
         .onDisappear(perform: viewModel.onDisappear)
-    }
-}
-
-//  MARK: - Actions
-extension MeView {
-    private func dismissAction() {
-        presentationMode.wrappedValue.dismiss()
     }
 }
 
@@ -155,8 +150,10 @@ extension MeView {
 }
 
 //  MARK: - Preview
+#if DEBUG
 struct MeView_Previews: PreviewProvider {
     static var previews: some View {
         MeView()
     }
 }
+#endif

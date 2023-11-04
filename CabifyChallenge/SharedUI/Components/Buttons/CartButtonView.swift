@@ -36,12 +36,8 @@ struct CartButtonView: View {
             }, impactStyle: .soft)
         }
         .animation(.spring(), value: isAnimating)
-        //  MARK: - LifeCycle
     }
 }
-
-//  MARK: - Actions
-extension CartButtonView {}
 
 //  MARK: - Local Components
 extension CartButtonView {
@@ -66,8 +62,10 @@ extension CartButtonView {
 }
 
 //  MARK: - Preview
+#if DEBUG
 struct CartButtonView_Previews: PreviewProvider {
     static var previews: some View {
         CartButtonView(isAnimating: .constant(false), count: .constant(10), action: {})
     }
 }
+#endif

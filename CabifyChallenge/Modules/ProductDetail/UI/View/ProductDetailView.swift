@@ -16,7 +16,7 @@ struct ProductDetailView: View {
     //  MARK: - Observed Object
     @EnvironmentObject private var productsViewModel: ProductsViewModel
     @StateObject private var viewModel = ProductDetailViewModel()
-    
+
     //  MARK: - Variables
     @State private var appear = [false, false, false, false]
     var product: ProductModel
@@ -29,14 +29,14 @@ struct ProductDetailView: View {
         ZStack {
             Color.White
                 .edgesIgnoringSafeArea(.all)
-            
+
             ScrollView(showsIndicators: false) {
                 CoverComponent
-                
+
                 ContentComponent
             }
             .ignoresSafeArea()
-            
+
             ButtonsComponent
         }
         .onChange(of: viewModel.cartProducts, perform: shareCartProducts)
@@ -48,10 +48,15 @@ struct ProductDetailView: View {
 //  MARK: - Actions
 extension ProductDetailView {
     private func onAppear() {
-        viewModel.repository.onAppear(products: productsViewModel.products, cartProducts: productsViewModel.cartProducts, product: product)
+        viewModel.repository.onAppear(
+            products: productsViewModel.products,
+            cartProducts: productsViewModel.cartProducts,
+            product: product
+        )
+
         fadeIn()
     }
-    
+
     private func fadeIn() {
         withAnimation(.easeOut.delay(0.4)) {
             appear[0] = true
@@ -66,7 +71,7 @@ extension ProductDetailView {
             appear[3] = true
         }
     }
-    
+
     private func fadeOut() {
         withAnimation(.easeIn(duration: 0.1)) {
             appear[0] = false
@@ -75,15 +80,15 @@ extension ProductDetailView {
             appear[3] = false
         }
     }
-    
+
     private func dismissDetail() {
         fadeOut()
-        
+
         withAnimation(.springAnimation.delay(0.3)) {
             productsViewModel.repository.dismissProductDetail()
         }
     }
-    
+
     private func shareCartProducts(cartProducts: [ProductModel]) {
         guard !cartProducts.isEmpty else { return }
         productsViewModel.cartProducts = cartProducts
@@ -97,24 +102,29 @@ extension ProductDetailView {
         VStack {
             HStack {
                 BackButtonView(action: dismissDetail)
-                
+
                 Spacer()
-                
+
             }
             .padding(.horizontal)
-            
+
             Spacer()
-            
-            AddToCartButtonView(price: $viewModel.price, color: color, action: { viewModel.repository.addToCart(product: viewModel.product) })
-                .padding(.bottom, 30)
+
+            AddToCartButtonView(
+                price: $viewModel.price,
+                color: color,
+                action: { viewModel.repository.addToCart(product: viewModel.product)
+                }
+            )
+            .padding(.bottom, 30)
         }
         .opacity(appear[3] ? 1 : 0)
     }
-    
+
     private var CoverComponent: some View {
         GeometryReader { proxy in
             let scrollY = proxy.frame(in: .global).minY
-            
+
             VStack {
                 Spacer()
             }
@@ -156,26 +166,26 @@ extension ProductDetailView {
         }
         .frame(height: 450)
     }
-    
+
     private var ContentComponent: some View {
         VStack(alignment: .leading, spacing: 20) {
             VStack(alignment: .leading, spacing: 0) {
                 Text("default_title")
                     .font(.body.bold())
                     .foregroundColor(.Black1)
-                
+
                 Text(product.name)
                     .font(.title)
                     .fontWeight(.heavy)
                     .foregroundColor(.Black1)
             }
             .opacity(appear[1] ? 1 : 0)
-            
+
             VStack(alignment: .leading, spacing: 0) {
                 Text("label_info")
                     .font(.body.bold())
                     .foregroundColor(.Black1)
-                
+
                 Text(product.name)
                     .font(.body)
                     .foregroundColor(.Black1)
@@ -190,11 +200,13 @@ extension ProductDetailView {
 }
 
 //  MARK: - Preview
+#if DEBUG
 struct ProductDetailView_Previews: PreviewProvider {
     @Namespace static var namespace
-    
+
     static var previews: some View {
         ProductDetailView(product: ProductModel.test, namespace: namespace)
             .environmentObject(ProductsViewModel())
     }
 }
+#endif

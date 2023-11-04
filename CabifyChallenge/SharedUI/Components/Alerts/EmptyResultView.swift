@@ -42,17 +42,11 @@ struct EmptyResultView: View {
                 .opacity(showCardAnimation ? 1 : 0)
             }
         }
-        .onAppear(perform: onAppear)
-    }
-}
-
-//  MARK: - Actions
-extension EmptyResultView {
-    private func onAppear() {
-        
-        withAnimation(.springAnimation.delay(0.3)) {
-            showCardAnimation = true
-        }
+        .onAppear(perform: {
+            withAnimation(.springAnimation.delay(0.3)) {
+                showCardAnimation = true
+            }
+        })
     }
 }
 
@@ -83,8 +77,10 @@ extension EmptyResultView {
 }
 
 //  MARK: - Preview
+#if DEBUG
 struct EmptyResultView_Previews: PreviewProvider {
     static var previews: some View {
         EmptyResultView(type: .emptyCart)
     }
 }
+#endif

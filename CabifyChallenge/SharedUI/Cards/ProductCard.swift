@@ -35,16 +35,11 @@ struct ProductCard: View {
             .scaleEffect(showCardAnimation ? 1 : 0)
             .onTapGesture(perform: action)
         }
-        .onAppear(perform: onAppear)
-    }
-}
-
-//  MARK: - Actions
-extension ProductCard {
-    private func onAppear() {
-        withAnimation(.springAnimation.delay(0.3)) {
-            showCardAnimation = true
-        }
+        .onAppear(perform: {
+            withAnimation(.springAnimation.delay(0.3)) {
+                showCardAnimation = true
+            }
+        })
     }
 }
 
@@ -128,9 +123,11 @@ extension ProductCard {
 }
 
 //  MARK: - Preview
+#if DEBUG
 struct ProductCard_Previews: PreviewProvider {
     @Namespace static var namespace
     static var previews: some View {
         ProductCard(namespace: namespace, product: ProductModel.test, action: {})
     }
 }
+#endif

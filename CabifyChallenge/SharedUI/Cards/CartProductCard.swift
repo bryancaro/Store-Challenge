@@ -44,21 +44,14 @@ struct CartProductCard: View {
             .padding(.horizontal, 20)
             .mediumShadow(.md_1)
             .scaleEffect(showCardAnimation ? 1 : 0)
-            //            .dynamicTypeSize(.xSmall ... .xLarge)
         }
-        .onAppear(perform: onAppear)
+        .onAppear(perform: {
+            withAnimation(.springAnimation.delay(0.3)) {
+                showCardAnimation = true
+            }
+        })
     }
 }
-
-//  MARK: - Actions
-extension CartProductCard {
-    private func onAppear() {
-        withAnimation(.springAnimation.delay(0.3)) {
-            showCardAnimation = true
-        }
-    }
-}
-
 //  MARK: - Local Components
 extension CartProductCard {
     private var ProductDataComponent: some View {
@@ -115,8 +108,10 @@ extension CartProductCard {
 }
 
 //  MARK: - Preview
+#if DEBUG
 struct CartProductView_Previews: PreviewProvider {
     static var previews: some View {
         CartProductCard(product: ProductModel.test, action: {})
     }
 }
+#endif
