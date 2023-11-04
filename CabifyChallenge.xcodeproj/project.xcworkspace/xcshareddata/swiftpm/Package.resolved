@@ -8,6 +8,24 @@
         "revision" : "8d3a15d0aa2991e0761749b767ef8d89bca6275a",
         "version" : "1.0.1"
       }
+    },
+    {
+      "identity" : "corenetwork",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/bryancaro/CoreNetwork.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "a4997efb9f4335d46bf869276969ec486eaf8d0d"
+      }
+    },
+    {
+      "identity" : "coreutils",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/bryancaro/CoreUtils.git",
+      "state" : {
+        "branch" : "develop",
+        "revision" : "cba7b82d7940950f0c25e36295a3216d6a36c001"
+      }
     }
   ],
   "version" : 2

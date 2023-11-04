@@ -14,6 +14,4 @@ import Foundation
 
 protocol LaunchScreenServerProtocol {}
 
-final class LaunchScreenServer: Network, LaunchScreenServer.ServerCalls {
-    typealias ServerCalls = LaunchScreenServerProtocol
-}
+final class LaunchScreenServer: LaunchScreenServerProtocol {}

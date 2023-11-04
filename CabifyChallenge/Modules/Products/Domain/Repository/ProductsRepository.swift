@@ -62,7 +62,8 @@ extension ProductsRepository: ProductsUseCasesProtocol {
     func getProducts() async -> [ProductModel] {
         do {
             let response = try await server.getProducts()
-            let model = response.map({ ProductModel($0) })
+            let productsResponse = response.products
+            let model = productsResponse.map({ ProductModel($0) })
             return model
         } catch {
             return [ProductModel]()

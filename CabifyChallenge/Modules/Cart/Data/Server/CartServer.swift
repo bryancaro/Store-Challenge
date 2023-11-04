@@ -14,6 +14,4 @@ import Foundation
 
 protocol CartServerProtocol {}
 
-final class CartServer: Network, CartServer.ServerCalls {
-    typealias ServerCalls = CartServerProtocol
-}
+final class CartServer: CartServerProtocol {}

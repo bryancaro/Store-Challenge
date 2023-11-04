@@ -16,6 +16,9 @@
 		110ADA2D29A82EAB00E3519F /* CartProductCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110ADA2729A82EAB00E3519F /* CartProductCard.swift */; };
 		110ADA4229A82ED800E3519F /* PayButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110ADA3C29A82ED800E3519F /* PayButtonView.swift */; };
 		110ADA5729A8376D00E3519F /* BackButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110ADA5129A8376D00E3519F /* BackButtonView.swift */; };
+		1113A36C2AF6863E009B9AE5 /* CoreNetwork in Frameworks */ = {isa = PBXBuildFile; productRef = 1113A36B2AF6863E009B9AE5 /* CoreNetwork */; };
+		1113A36F2AF68C70009B9AE5 /* CoreUtils in Frameworks */ = {isa = PBXBuildFile; productRef = 1113A36E2AF68C70009B9AE5 /* CoreUtils */; };
+		1113A3712AF68E60009B9AE5 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1113A3702AF68E60009B9AE5 /* Endpoint.swift */; };
 		1146E8CF29A1312300420964 /* CabifyChallengeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1146E8CE29A1312300420964 /* CabifyChallengeApp.swift */; };
 		1146E8D329A1312400420964 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1146E8D229A1312400420964 /* Assets.xcassets */; };
 		1146E8D629A1312400420964 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1146E8D529A1312400420964 /* Preview Assets.xcassets */; };
@@ -35,11 +38,6 @@
 		1146E99B29A1452F00420964 /* AnalyticsEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1146E99A29A1452F00420964 /* AnalyticsEvent.swift */; };
 		1146E99E29A14AA700420964 /* CloudKitAnalyticsEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1146E99D29A14AA700420964 /* CloudKitAnalyticsEngine.swift */; };
 		1146E9A029A14AB600420964 /* FirebaseAnalyticsEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1146E99F29A14AB600420964 /* FirebaseAnalyticsEngine.swift */; };
-		116F8E3029AA30CF00B1D30B /* NetworkControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116F8E2129AA30CF00B1D30B /* NetworkControllerProtocol.swift */; };
-		116F8E3129AA30CF00B1D30B /* NetworkEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116F8E2229AA30CF00B1D30B /* NetworkEndpoint.swift */; };
-		116F8E3329AA30CF00B1D30B /* NetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116F8E2429AA30CF00B1D30B /* NetworkResponse.swift */; };
-		116F8E3429AA30CF00B1D30B /* NetworkDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116F8E2529AA30CF00B1D30B /* NetworkDecoder.swift */; };
-		116F8E3529AA30CF00B1D30B /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116F8E2629AA30CF00B1D30B /* NetworkController.swift */; };
 		1191FAA429A93BBB00790D05 /* EmptyResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1191FA9E29A93BBB00790D05 /* EmptyResultView.swift */; };
 		1191FAB429A944D700790D05 /* MeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1191FAA929A944D700790D05 /* MeViewModel.swift */; };
 		1191FAB829A944D700790D05 /* Me.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1191FAB129A944D700790D05 /* Me.swift */; };
@@ -95,7 +93,6 @@
 		11E746E729AA390F0083EC75 /* CartUseCases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E746BF29AA390F0083EC75 /* CartUseCases.swift */; };
 		11E746E829AA390F0083EC75 /* CartUseCasesFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E746C029AA390F0083EC75 /* CartUseCasesFactory.swift */; };
 		11E746E929AA390F0083EC75 /* CartUseCasesOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E746C129AA390F0083EC75 /* CartUseCasesOutput.swift */; };
-		11E746ED29AA3FB80083EC75 /* ProductsServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E746EC29AA3FB80083EC75 /* ProductsServices.swift */; };
 		11F3D59829AACA3700D0F812 /* Promotions-Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F3D59729AACA3700D0F812 /* Promotions-Helper.swift */; };
 /* End PBXBuildFile section */
 
@@ -126,6 +123,7 @@
 		110ADA2729A82EAB00E3519F /* CartProductCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartProductCard.swift; sourceTree = "<group>"; };
 		110ADA3C29A82ED800E3519F /* PayButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PayButtonView.swift; sourceTree = "<group>"; };
 		110ADA5129A8376D00E3519F /* BackButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackButtonView.swift; sourceTree = "<group>"; };
+		1113A3702AF68E60009B9AE5 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		1146E8CB29A1312300420964 /* CabifyChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CabifyChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1146E8CE29A1312300420964 /* CabifyChallengeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CabifyChallengeApp.swift; sourceTree = "<group>"; };
 		1146E8D229A1312400420964 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -149,11 +147,6 @@
 		1146E99A29A1452F00420964 /* AnalyticsEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsEvent.swift; sourceTree = "<group>"; };
 		1146E99D29A14AA700420964 /* CloudKitAnalyticsEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitAnalyticsEngine.swift; sourceTree = "<group>"; };
 		1146E99F29A14AB600420964 /* FirebaseAnalyticsEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAnalyticsEngine.swift; sourceTree = "<group>"; };
-		116F8E2129AA30CF00B1D30B /* NetworkControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkControllerProtocol.swift; sourceTree = "<group>"; };
-		116F8E2229AA30CF00B1D30B /* NetworkEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkEndpoint.swift; sourceTree = "<group>"; };
-		116F8E2429AA30CF00B1D30B /* NetworkResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkResponse.swift; sourceTree = "<group>"; };
-		116F8E2529AA30CF00B1D30B /* NetworkDecoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkDecoder.swift; sourceTree = "<group>"; };
-		116F8E2629AA30CF00B1D30B /* NetworkController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
 		1191FA9E29A93BBB00790D05 /* EmptyResultView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyResultView.swift; sourceTree = "<group>"; };
 		1191FAA929A944D700790D05 /* MeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeViewModel.swift; sourceTree = "<group>"; };
 		1191FAB129A944D700790D05 /* Me.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Me.swift; sourceTree = "<group>"; };
@@ -208,7 +201,6 @@
 		11E746BF29AA390F0083EC75 /* CartUseCases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartUseCases.swift; sourceTree = "<group>"; };
 		11E746C029AA390F0083EC75 /* CartUseCasesFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartUseCasesFactory.swift; sourceTree = "<group>"; };
 		11E746C129AA390F0083EC75 /* CartUseCasesOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartUseCasesOutput.swift; sourceTree = "<group>"; };
-		11E746EC29AA3FB80083EC75 /* ProductsServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsServices.swift; sourceTree = "<group>"; };
 		11E746EE29AA42CA0083EC75 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		11F3D59729AACA3700D0F812 /* Promotions-Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Promotions-Helper.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -218,6 +210,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1113A36C2AF6863E009B9AE5 /* CoreNetwork in Frameworks */,
+				1113A36F2AF68C70009B9AE5 /* CoreUtils in Frameworks */,
 				11B10BB529ABC44B002F59E8 /* ConfettiSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -379,13 +373,6 @@
 			path = Production;
 			sourceTree = "<group>";
 		};
-		1146E95D29A13A7600420964 /* Modifiers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Modifiers;
-			sourceTree = "<group>";
-		};
 		1146E95F29A13A7600420964 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -482,7 +469,6 @@
 				1146E96C29A13A7600420964 /* Components */,
 				110AD9E829A8247400E3519F /* Cards */,
 				110AD9E429A8229100E3519F /* Generic */,
-				1146E95D29A13A7600420964 /* Modifiers */,
 			);
 			path = SharedUI;
 			sourceTree = "<group>";
@@ -503,30 +489,9 @@
 		116F8E1E29AA30CF00B1D30B /* API */ = {
 			isa = PBXGroup;
 			children = (
-				116F8E1F29AA30CF00B1D30B /* Servers */,
-				116F8E2729AA30CF00B1D30B /* Services */,
+				1113A3702AF68E60009B9AE5 /* Endpoint.swift */,
 			);
 			path = API;
-			sourceTree = "<group>";
-		};
-		116F8E1F29AA30CF00B1D30B /* Servers */ = {
-			isa = PBXGroup;
-			children = (
-				116F8E2129AA30CF00B1D30B /* NetworkControllerProtocol.swift */,
-				116F8E2229AA30CF00B1D30B /* NetworkEndpoint.swift */,
-				116F8E2429AA30CF00B1D30B /* NetworkResponse.swift */,
-				116F8E2529AA30CF00B1D30B /* NetworkDecoder.swift */,
-				116F8E2629AA30CF00B1D30B /* NetworkController.swift */,
-			);
-			path = Servers;
-			sourceTree = "<group>";
-		};
-		116F8E2729AA30CF00B1D30B /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				11E746EB29AA3FAD0083EC75 /* Products */,
-			);
-			path = Services;
 			sourceTree = "<group>";
 		};
 		1191FA8E29A93AEC00790D05 /* Buttons */ = {
@@ -1042,14 +1007,6 @@
 			path = UseCases;
 			sourceTree = "<group>";
 		};
-		11E746EB29AA3FAD0083EC75 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				11E746EC29AA3FB80083EC75 /* ProductsServices.swift */,
-			);
-			path = Products;
-			sourceTree = "<group>";
-		};
 		11F3D59629AACA0600D0F812 /* PromotionsHelper */ = {
 			isa = PBXGroup;
 			children = (
@@ -1076,6 +1033,8 @@
 			name = CabifyChallenge;
 			packageProductDependencies = (
 				11B10BB429ABC44B002F59E8 /* ConfettiSwiftUI */,
+				1113A36B2AF6863E009B9AE5 /* CoreNetwork */,
+				1113A36E2AF68C70009B9AE5 /* CoreUtils */,
 			);
 			productName = CabifyChallenge;
 			productReference = 1146E8CB29A1312300420964 /* CabifyChallenge.app */;
@@ -1152,6 +1111,8 @@
 			mainGroup = 1146E8C229A1312300420964;
 			packageReferences = (
 				11B10BB329ABC44B002F59E8 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */,
+				1113A36A2AF6863E009B9AE5 /* XCRemoteSwiftPackageReference "CoreNetwork" */,
+				1113A36D2AF68C70009B9AE5 /* XCRemoteSwiftPackageReference "CoreUtils" */,
 			);
 			productRefGroup = 1146E8CC29A1312300420964 /* Products */;
 			projectDirPath = "";
@@ -1199,14 +1160,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				116F8E3329AA30CF00B1D30B /* NetworkResponse.swift in Sources */,
 				1146E99E29A14AA700420964 /* CloudKitAnalyticsEngine.swift in Sources */,
 				11E746E729AA390F0083EC75 /* CartUseCases.swift in Sources */,
 				11E746C829AA390F0083EC75 /* ProductDetailRepository.swift in Sources */,
 				11E746C429AA390F0083EC75 /* ProductDetail_Mocks.swift in Sources */,
 				11E746C229AA390F0083EC75 /* ProductDetailViewModel.swift in Sources */,
 				11E746C329AA390F0083EC75 /* ProductDetailView.swift in Sources */,
-				116F8E3029AA30CF00B1D30B /* NetworkControllerProtocol.swift in Sources */,
 				11E746DE29AA390F0083EC75 /* LaunchScreenUseCases.swift in Sources */,
 				11F3D59829AACA3700D0F812 /* Promotions-Helper.swift in Sources */,
 				110AD9FD29A8249E00E3519F /* ProductCard.swift in Sources */,
@@ -1216,7 +1175,7 @@
 				110ADA0229A8274500E3519F /* Product-Model.swift in Sources */,
 				11E746CC29AA390F0083EC75 /* ProductsViewModel.swift in Sources */,
 				1146E9A029A14AB600420964 /* FirebaseAnalyticsEngine.swift in Sources */,
-				116F8E3129AA30CF00B1D30B /* NetworkEndpoint.swift in Sources */,
+				1113A3712AF68E60009B9AE5 /* Endpoint.swift in Sources */,
 				11E746DD29AA390F0083EC75 /* LaunchScreenUseCasesOutput.swift in Sources */,
 				1146E8CF29A1312300420964 /* CabifyChallengeApp.swift in Sources */,
 				11E746DB29AA390F0083EC75 /* FirebaseAnalyticsLaunchScreenTracker.swift in Sources */,
@@ -1230,7 +1189,6 @@
 				11E746D729AA390F0083EC75 /* LaunchScreenView.swift in Sources */,
 				11E746D429AA390F0083EC75 /* ProductsUseCasesFactory.swift in Sources */,
 				11E746D229AA390F0083EC75 /* ProductsRepository.swift in Sources */,
-				116F8E3529AA30CF00B1D30B /* NetworkController.swift in Sources */,
 				11E746E629AA390F0083EC75 /* CartRepository.swift in Sources */,
 				110AD9E729A822BD00E3519F /* ExpButton.swift in Sources */,
 				11E746DC29AA390F0083EC75 /* LaunchScreenRepository.swift in Sources */,
@@ -1253,7 +1211,6 @@
 				1146E98229A13A7700420964 /* ConfigurationManager.swift in Sources */,
 				11E746E929AA390F0083EC75 /* CartUseCasesOutput.swift in Sources */,
 				11E746E129AA390F0083EC75 /* CartView.swift in Sources */,
-				11E746ED29AA3FB80083EC75 /* ProductsServices.swift in Sources */,
 				1191FAB829A944D700790D05 /* Me.swift in Sources */,
 				11E746D529AA390F0083EC75 /* ProductsUseCasesOutput.swift in Sources */,
 				110ADA0029A8262900E3519F /* PreferencesKey.swift in Sources */,
@@ -1264,7 +1221,6 @@
 				1146E98829A13A7700420964 /* TimeInterval-Extension.swift in Sources */,
 				1191FAB929A944D700790D05 /* MeView.swift in Sources */,
 				11E746D929AA390F0083EC75 /* LaunchScreenServer.swift in Sources */,
-				116F8E3429AA30CF00B1D30B /* NetworkDecoder.swift in Sources */,
 				11E746E229AA390F0083EC75 /* Cart_Mocks.swift in Sources */,
 				11E746E529AA390F0083EC75 /* FirebaseAnalyticsCartTracker.swift in Sources */,
 				110AD9E329A8221100E3519F /* CartButtonView.swift in Sources */,
@@ -1377,7 +1333,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1431,7 +1387,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1460,6 +1416,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1491,6 +1448,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1513,7 +1471,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ZASPB3G349;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bryancms.CabifyChallengeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1533,7 +1491,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ZASPB3G349;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bryancms.CabifyChallengeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1624,6 +1582,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		1113A36A2AF6863E009B9AE5 /* XCRemoteSwiftPackageReference "CoreNetwork" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/bryancaro/CoreNetwork.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		1113A36D2AF68C70009B9AE5 /* XCRemoteSwiftPackageReference "CoreUtils" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/bryancaro/CoreUtils.git";
+			requirement = {
+				branch = develop;
+				kind = branch;
+			};
+		};
 		11B10BB329ABC44B002F59E8 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/simibac/ConfettiSwiftUI.git";
@@ -1635,6 +1609,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		1113A36B2AF6863E009B9AE5 /* CoreNetwork */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1113A36A2AF6863E009B9AE5 /* XCRemoteSwiftPackageReference "CoreNetwork" */;
+			productName = CoreNetwork;
+		};
+		1113A36E2AF68C70009B9AE5 /* CoreUtils */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1113A36D2AF68C70009B9AE5 /* XCRemoteSwiftPackageReference "CoreUtils" */;
+			productName = CoreUtils;
+		};
 		11B10BB429ABC44B002F59E8 /* ConfettiSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 11B10BB329ABC44B002F59E8 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */;
